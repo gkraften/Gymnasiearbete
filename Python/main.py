@@ -1,1 +1,1 @@
-print("HEJ")
+print("cancer")
