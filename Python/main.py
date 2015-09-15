@@ -1,1 +1,1 @@
-print("cancer")
+print("cancerböldpest")
