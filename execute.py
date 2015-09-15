@@ -4,7 +4,7 @@ import sys
 
 command = '''\
 #!/bin/bash
-type=daemon
+type=terminal
 cd Desktop
 if [ -d Gymnasiearbete ]; then
     cd Gymnasiearbete
@@ -30,7 +30,7 @@ cd Robot
 if [[ $type == daemon ]]; then
     sudo python3 main.py > /home/pi/Desktop/meddelanden.txt 2> /home/pi/Desktop/fel.txt &
 else
-    sudo python3 main.py || read
+    sudo python3 main.py || (echo -n Tryck på enter för att avsluta; read)
 fi'''
 
 if sys.platform == "darwin":
