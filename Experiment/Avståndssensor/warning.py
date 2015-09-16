@@ -33,9 +33,10 @@ time.sleep(0.1)
 
 try:
     while True:
-        if distance() < 20:
+        d = distance()
+        if d < 20:
             GPIO.output(led, True)
-        elif distance >= 20:
+        elif d >= 20:
             GPIO.output(led, False)
         time.sleep(0.1)
 except KeyboardInterrupt:
