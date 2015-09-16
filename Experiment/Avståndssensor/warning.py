@@ -38,7 +38,7 @@ try:
             GPIO.output(led, True)
         elif d >= 20:
             GPIO.output(led, False)
-        time.sleep(0.1)
+        time.sleep(0.05)
 except KeyboardInterrupt:
     pass
 finally:
