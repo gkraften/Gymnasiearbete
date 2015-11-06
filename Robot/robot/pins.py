@@ -1,3 +1,5 @@
+import RPi.GPIO as GPIO
+
 BATTERY = 12
 
 GPIO.setmode(GPIO.BOARD)

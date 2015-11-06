@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import robot.pins as pins
 
 def is_battery_low():
-    return GPIO.input(pins.BATTERY)
+    return not GPIO.input(pins.BATTERY)
 
 def halt():
     call(["halt"])
