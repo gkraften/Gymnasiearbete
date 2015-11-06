@@ -1,3 +1,5 @@
 BATTERY = 12
 
+GPIO.setmode(GPIO.BOARD)
+
 GPIO.setup(BATTERY, GPIO.IN)
