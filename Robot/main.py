@@ -6,8 +6,7 @@ import time
 import RPi.GPIO as GPIO
 
 while True:
-    print(robot.is_battery_low())
-    if robot.is_battery_low() and True is False:
+    if robot.is_battery_low():
         with open("/home/pi/Desktop/halt.txt", "w") as f:
             print("Batteriet är lågt! Stänger av.", file=f)
         GPIO.cleanup()
