@@ -5,8 +5,8 @@ class Motor:
         self.pin1 = pin1
         self.pin2 = pin2
 
-        GPIO.setup(pin1, GPIO.OUT)
-        GPIO.setup(pin2, GPIO.OUT)
+        GPIO.setup(pin1, GPIO.OUT, initial=False)
+        GPIO.setup(pin2, GPIO.OUT, initial=False)
 
     def forward(self):
         GPIO.output(self.pin1, True)
