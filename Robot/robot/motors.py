@@ -20,7 +20,7 @@ class Motor:
         GPIO.output(self.pin1, False)
         GPIO.output(self.pin2, False)
 
-LEFT = Motor(22, 24)
+LEFT = Motor(11, 13)
 RIGHT = Motor(16, 18)
 
 def stop():
