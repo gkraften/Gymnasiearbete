@@ -22,7 +22,7 @@ def getch():
 
 get = getch()
 
-robot.on_low_battery(robot.halt)
+robot.on_battery_low(robot.halt)
 
 try:
     while True:
