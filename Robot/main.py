@@ -11,10 +11,9 @@ robot.motors.forward()
 
 try:
     while True:
-        if robot.distance.get_mid() < 30:
-            robot.motors.right()
-            time.sleep(0.5)
-            robot.motors.forward()
+        print("Vänster: " + robot.distance.get_left())
+        print("Mitten: " + robot.distance.get_mid())
+        print("Höger: " + robot.distance.get_right())
         time.sleep(0.1)
 finally:
     GPIO.cleanup()
