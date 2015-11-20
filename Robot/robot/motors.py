@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import robot.pins as pins
+import robot
 
 class Motor:
     def __init__(self, pin1, pin2):
@@ -10,14 +11,17 @@ class Motor:
         GPIO.setup(pin2, GPIO.OUT, initial=False)
 
     def forward(self):
+        robot.pause_battery_detection()
         GPIO.output(self.pin1, True)
         GPIO.output(self.pin2, False)
 
     def backward(self):
+        robot.pause_battery_detection()
         GPIO.output(self.pin2, True)
         GPIO.output(self.pin1, False)
 
     def stop(self):
+        robot.resume_battery_detection()
         GPIO.output(self.pin1, False)
         GPIO.output(self.pin2, False)
 
@@ -27,3 +31,19 @@ RIGHT = Motor(pins.MOTOR_RIGHT_1, pins.MOTOR_RIGHT_2)
 def stop():
     LEFT.stop()
     RIGHT.stop()
+
+def forward():
+    LEFT.forward()
+    RIGHT.forward()
+
+def backward():
+    LEFT.backward()
+    RIGHT.backward()
+
+def left():
+    LEFT.backward()
+    RIGHT.forward()
+
+def right():
+    LEFT.forward()
+    RIGHT.backward()
