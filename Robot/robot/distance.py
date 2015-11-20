@@ -22,4 +22,4 @@ def get(trig, echo):
     return (stop - start) * 17150
 
 def get_mid():
-    return get(pins.DISTANCE_MID_TRIG, pins.DISTANCE_MID_ECHOAvst)
+    return get(pins.DISTANCE_MID_TRIG, pins.DISTANCE_MID_ECHO)
