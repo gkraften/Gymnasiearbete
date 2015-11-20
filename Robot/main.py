@@ -14,7 +14,7 @@ try:
         if robot.distance.get_mid() < 30:
             random.choice([robot.motors.left, robot.motors.right])()
             time.sleep(0.1)
-            robot.robots.forward()
+            robot.motors.forward()
         time.sleep(0.1)
 finally:
     GPIO.cleanup()
