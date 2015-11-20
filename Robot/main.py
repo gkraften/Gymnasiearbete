@@ -13,7 +13,7 @@ try:
     while True:
         if robot.distance.get_mid() < 30:
             robot.motors.right()
-            time.sleep(0.3)
+            time.sleep(0.5)
             robot.motors.forward()
         time.sleep(0.1)
 finally:
