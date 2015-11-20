@@ -1,11 +1,13 @@
 import robot.motors
 import robot.distance
+import robot.pins as pins
 import robot
 import random
 import time
 import RPi.GPIO as GPIO
 
 robot.on_battery_low(lambda: print("Lågt batteri!"))
+print(GPIO.input(pins.BATTERY))
 
 robot.motors.forward()
 
