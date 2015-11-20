@@ -4,7 +4,7 @@ import robot.pins as pins
 
 GPIO.setmode(GPIO.BOARD)
 
-GPIO.setup(pins.BATTERY, GPIO.INPUT)
+GPIO.setup(pins.BATTERY, GPIO.IN)
 
 def on_battery_low(callback):
     GPIO.remove_event_detect(pins.BATTERY)
