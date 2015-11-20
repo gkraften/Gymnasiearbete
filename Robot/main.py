@@ -12,8 +12,8 @@ robot.on_battery_low(lambda: print("Lågt batteri!"))
 try:
     while True:
         print("Mitten: " + str(robot.distance.get_mid()))
-        print("Vänster: " + robot.distance.get_left())
-        print("Höger: " + robot.distance.get_right())
+        print("Höger: " + str(robot.distance.get_right()))
+        print("Vänster: " + str(robot.distance.get_left()))
         time.sleep(0.1)
 finally:
     GPIO.cleanup()
