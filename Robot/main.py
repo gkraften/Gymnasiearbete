@@ -13,7 +13,7 @@ try:
     while True:
         if robot.distance.get_mid() < 30:
             random.choice([robot.motors.left, robot.motors.right])()
-            time.sleep(0.1)
+            time.sleep(0.3)
             robot.motors.forward()
         time.sleep(0.1)
 finally:
