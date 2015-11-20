@@ -19,11 +19,11 @@ try:
             random.choice([robot.motors.left, robot.motors.right])()
             time.sleep(0.5)
             robot.motors.forward()
-        elif robot.distance.get_mid() < 20:
+        elif robot.distance.get_mid() < 10:
             robot.motors.right()
             time.sleep(1)
             robot.motors.forward()
-        elif robot.distance.get_mid() < 30:
+        elif robot.distance.get_mid() < 20:
             robot.motors.backward()
             time.sleep(0.5)
             random.choice([robot.motors.left, robot.motors.right])()
