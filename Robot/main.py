@@ -1,4 +1,5 @@
 import robot.motors
+import robot
 import time
 import RPi.GPIO as GPIO
 
@@ -20,6 +21,8 @@ def getch():
     return _getch
 
 get = getch()
+
+robot.on_low_battery(robot.halt)
 
 try:
     while True:

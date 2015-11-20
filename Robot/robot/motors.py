@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import robot.pins as pins
 
 class Motor:
     def __init__(self, pin1, pin2):
@@ -20,8 +21,8 @@ class Motor:
         GPIO.output(self.pin1, False)
         GPIO.output(self.pin2, False)
 
-LEFT = Motor(13, 11)
-RIGHT = Motor(16, 18)
+LEFT = Motor(pins.MOTOR_LEFT_1, pins.MOTOR_LEFT_2)
+RIGHT = Motor(pins.MOTOR_RIGHT_1, pins.MOTOR_RIGHT_2)
 
 def stop():
     LEFT.stop()
