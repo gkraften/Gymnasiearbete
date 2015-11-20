@@ -1,48 +1,20 @@
 import robot.motors
+import robot.distance
 import robot
+import random
 import time
 import RPi.GPIO as GPIO
 
-#Ignorera den här funktionen. Jag vet knappt själv hur den funkar
-#/G
-def getch():
-    import termios
-    import sys, tty
-    def _getch():
-        fd = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fd)
-        try:
-            tty.setraw(fd)
-            ch = sys.stdin.read(1)
-        finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-        return ch
+robot.on_battery_low(lambda: print("Lågt batteri!"))
 
-    return _getch
-
-get = getch()
-
-robot.on_battery_low(robot.halt)
+robot.motors.forward()
 
 try:
     while True:
-        cmd = get()
-        if cmd == "f":
-            robot.motors.LEFT.forward()
-            robot.motors.RIGHT.forward()
-        elif cmd == "b":
-            robot.motors.LEFT.backward()
-            robot.motors.RIGHT.backward()
-        elif cmd == "s":
-            robot.motors.stop()
-        elif cmd == "q":
-            robot.motors.stop()
-            break
-        elif cmd == "l":
-            robot.motors.LEFT.backward()
-            robot.motors.RIGHT.forward()
-        elif cmd == "r":
-            robot.motors.LEFT.forward()
-            robot.motors.RIGHT.backward()
+        if robot.distance.get_mid() < 30:
+            random.choice([robot.motors.left, robot.motors.right])()
+            time.sleep(0.1)
+            robot.forward()
+        time.sleep(0.1)
 finally:
     GPIO.cleanup()
