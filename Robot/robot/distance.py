@@ -5,6 +5,12 @@ import time
 GPIO.setup(pins.DISTANCE_MID_TRIG, GPIO.OUT)
 GPIO.setup(pins.DISTANCE_MID_ECHO, GPIO.IN)
 
+GPIO.setup(pins.DISTANCE_LEFT_TRIG, GPIO.OUT)
+GPIO.setup(pins.DISTANCE_LEFT_ECHO, GPIO.IN)
+
+GPIO.setup(pins.DISTANCE_RIGHT_TRIG, GPIO.OUT)
+GPIO.setup(pins.DISTANCE_RIGHT_ECHO, GPIO.IN)
+
 def get(trig, echo):
     GPIO.output(trig, 1)
     time.sleep(0.00001)
@@ -23,3 +29,9 @@ def get(trig, echo):
 
 def get_mid():
     return get(pins.DISTANCE_MID_TRIG, pins.DISTANCE_MID_ECHO)
+
+def get_left():
+    return get(pins.DISTANCE_LEFT_TRIG, pins.DISTANCE_LEFT_ECHO)
+
+def get_right():
+    return get(pins.DISTANCE_RIGHT_TRIG, pins.DISTANCE_RIGHT_ECHO)
