@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 
 robot.on_battery_low(lambda: print("Lågt batteri!"))
 
-robot.motors.forward()
+#robot.motors.forward()
 
 try:
     while True:
