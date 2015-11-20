@@ -13,13 +13,9 @@ robot.motors.forward()
 
 try:
     while True:
-        if (robot.distance.get_left() < 30 and robot.distance.get_right() < 30):
+        if (robot.distance.get_left() < 30 and robot.distance.get_right() < 30 or robot.distance.get_mid() < 20):
             robot.motors.backward()
             time.sleep(1)
-            random.choice([robot.motors.left, robot.motors.right])()
-            time.sleep(0.5)
-            robot.motors.forward()
-        elif (robot.distance.get_mid() < 20):
             random.choice([robot.motors.left, robot.motors.right])()
             time.sleep(0.5)
             robot.motors.forward()
