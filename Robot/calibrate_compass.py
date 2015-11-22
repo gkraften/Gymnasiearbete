@@ -22,9 +22,9 @@ try:
             y_min = y
 except KeyboardInterrupt:
     x_offset = -abs(x_max - x_min)/2
-    x_scale = 1/abs(x_max - x_min)
+    x_scale = 2/abs(x_max - x_min)
     y_offset = -abs(y_max - y_min)/2
-    y_scale = 1/abs(y_max - y_min)
+    y_scale = 2/abs(y_max - y_min)
 
     print("x_offset = {}".format(x_offset))
     print("x_sxale = {}".format(x_scale))
