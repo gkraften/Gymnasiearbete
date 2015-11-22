@@ -13,12 +13,12 @@ try:
         x, y, z = compass.readAxisData()
         if x_max is None or x > x_max:
             x_max = x
-        elif x_min is None or x < x_min:
+        if x_min is None or x < x_min:
             x_min = x
 
         if y_max is None or y > y_max:
             y_max = y
-        elif y_min is None or y < y_min:
+        if y_min is None or y < y_min:
             y_min = y
 except KeyboardInterrupt:
     x_offset = -abs(x_max - x_min)/2
