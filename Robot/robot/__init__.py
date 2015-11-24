@@ -36,9 +36,12 @@ import robot.compass as compass
 import robot.motors as motors
 
 def turn_to(heading, error=1):
-    while abs(math.degrees(math.atan2(math.sin(math.radians(compass.getHeading() - heading)), math.cos(math.radians(compass.getHeading() - heading))))) > error:
-        while abs(math.degrees(math.atan2(math.sin(math.radians(compass.getHeading() - heading)), math.cos(math.radians(compass.getHeading() - heading))))) > error:
-            if abs(math.degrees(math.atan2(math.sin(math.radians(compass.getHeading() - heading)), math.cos(math.radians(compass.getHeading() - heading))))) < 0:
+    def distance(v, w):
+        return math.atan2(math.sin(v-w), math.cos(v-w))
+
+    while abs(distance(compass.getHeading(), heading)) > error:
+        while abs(distance(compass.getHeading(), heading)) > error:
+            if distance(heading, compass.getHeading()) > 0:
                 motors.left(50)
             else:
                 motors.right(50)
