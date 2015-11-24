@@ -13,7 +13,8 @@ y_max = None
 y_min = None
 
 try:
-    print(len(sys.argv))
+    if len(sys.argv) == 2 and sys.argv[1] == "-a":
+        motors.right(50)
 
     x, y, z = compass.readAxisData()
     x_max = x
