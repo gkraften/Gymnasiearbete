@@ -12,10 +12,8 @@ REGISTER_OUT_Z_L_M = 0x06
 REGISTER_OUT_Y_L_M = 0X08
 REGISTER_OUT_Y_H_M = 0X07
 
-_xoffset = -253.0-0.9288537549407114
-_yoffset = -176.5-1.0934844192634563
-_xscale = 0.003952569169960474*1.0765957446808512
-_yscale = 0.0056657223796034*0.9145077720207252
+_xoffset = 0
+_yoffset = 0
 
 bus = smbus.SMBus(1)
 
@@ -44,8 +42,8 @@ def readAxisData():
     zl = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_Z_L_M)
     zh = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_Z_H_M)
 
-    x = (_twos_comp(((xh & 0xff)<<8) | xl, 16) + _xoffset) * _xscale
-    y = (_twos_comp(((yh & 0xff)<<8) | yl, 16) + _yoffset) * _yscale
+    x = _twos_comp(((xh & 0xff)<<8) | xl, 16) - _xoffset
+    y = _twos_comp(((yh & 0xff)<<8) | yl, 16) - _yoffset
     z = _twos_comp(((zh & 0xff)<<8) | zl, 16)
 
     return (x, y, z)
