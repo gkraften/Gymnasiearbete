@@ -43,4 +43,4 @@ def turn_to(heading, error=1):
             else:
                 motors.left(50)
         motors.stop()
-        time.sleep(0.1)
+        time.sleep(1)
