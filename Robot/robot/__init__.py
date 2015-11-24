@@ -35,7 +35,7 @@ def halt():
 import robot.compass as compass
 import robot.motors as motors
 
-def turn_to(heading, error=1):
+def turn_to(heading, error=math.radians(1)):
     def distance(v, w):
         return math.atan2(math.sin(v-w), math.cos(v-w))
 
