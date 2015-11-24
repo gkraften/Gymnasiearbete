@@ -53,7 +53,7 @@ def getHeading():
     angle = math.degrees(math.atan2(values[1], values[0]))
     if angle < 0:
         angle += 360
-    return angle
+    return 360 - angle
 
 setNormalSpeedDataRate()
 bus.write_byte_data(DEVICE_ADDRESS, REGISTER_CRB_REG_M, 0x20)
