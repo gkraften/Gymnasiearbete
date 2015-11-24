@@ -36,6 +36,7 @@ import robot.motors as motors
 
 def turn_to(heading, error=1):
     heading = compass.convert_to_compass_angle(heading)
+    compass.setHighSpeedDataRate()
     while abs(compass.getHeading() - heading) > error:
         if compass.getHeading() < heading:
             motors.right(50)
