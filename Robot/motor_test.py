@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 
 motors.forward()
 time.sleep(2)
-motors.forward(50)
+motors.forward(10)
 time.sleep(2)
 motors.stop()
 time.sleep(3)
