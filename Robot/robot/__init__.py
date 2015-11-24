@@ -42,6 +42,6 @@ def turn_to(heading, error=1):
         else:
             motors.left(50)
         while abs(compass.getHeading() - heading) > error:
-            pass
+            print(abs(compass.getHeading() - heading))
         motors.stop()
         time.sleep(1)
