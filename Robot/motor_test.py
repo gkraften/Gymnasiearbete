@@ -1,8 +1,10 @@
 import robot.motors as motors
+import robot
 import time
 import RPi.GPIO as GPIO
 
-motors.left(50)
-time.sleep(2)
+print("vrider")
+robot.turn_to(0)
+print("klart")
 
 GPIO.cleanup()

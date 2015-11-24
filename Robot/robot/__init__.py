@@ -1,6 +1,9 @@
 from subprocess import call
 import RPi.GPIO as GPIO
 import robot.pins as pins
+import robot.compass as compass
+import robot.motors as motors
+import time
 
 _battery_callback = None
 _battery_pauses = 0
@@ -28,3 +31,14 @@ def resume_battery_detection():
 
 def halt():
     call(["halt"])
+
+def turn_to(heading, error=1):
+    heading = compass.convert_to_compass_angle(heading)
+    while abs(compass.getHeading() - heading) > error:
+        while abs(compass.getHeading() - heading) > error:
+            if compass.getHeading() < heading:
+                motors.right(50)
+            else:
+                motors.left(50)
+        motors.stop()
+        time.sleep(0.1)

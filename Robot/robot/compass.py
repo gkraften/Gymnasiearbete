@@ -12,8 +12,8 @@ REGISTER_OUT_Z_L_M = 0x06
 REGISTER_OUT_Y_L_M = 0X08
 REGISTER_OUT_Y_H_M = 0X07
 
-_xoffset = 349.5
-_yoffset = 83.5
+_xoffset = 280
+_yoffset = 3.5
 
 bus = smbus.SMBus(1)
 
@@ -52,5 +52,12 @@ def getHeading():
     values = readAxisData()
     return math.degrees(math.atan2(values[1], values[0]))
 
+def convert_to_compass_angle(angle):
+    angle = angle - 360*(angle//360)
+    if angle > 180:
+        angle = -360 + angle
+    return angle
+
 setNormalSpeedDataRate()
 bus.write_byte_data(DEVICE_ADDRESS, REGISTER_CRB_REG_M, 0x20)
+wake()
