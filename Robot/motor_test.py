@@ -2,11 +2,7 @@ import robot.motors as motors
 import time
 import RPi.GPIO as GPIO
 
-motors.forward()
+motors.left()
 time.sleep(2)
-motors.forward(30)
-time.sleep(2)
-motors.stop()
-time.sleep(3)
 
 GPIO.cleanup()
