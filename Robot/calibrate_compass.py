@@ -1,5 +1,8 @@
 import robot.compass as compass
+import robot.motors as motors
+import RPi.GPIO as GPIO
 import time
+import sys
 
 compass.wake()
 compass.setHighSpeedDataRate()
@@ -10,6 +13,8 @@ y_max = None
 y_min = None
 
 try:
+    print(len(sys.argv))
+
     x, y, z = compass.readAxisData()
     x_max = x
     x_min = x
@@ -30,3 +35,4 @@ except KeyboardInterrupt:
 finally:
     compass.setNormalSpeedDataRate()
     compass.sleep()
+    GPIO.cleanup()
