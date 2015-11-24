@@ -35,7 +35,6 @@ import robot.compass as compass
 import robot.motors as motors
 
 def turn_to(heading, error=1):
-    compass.setHighSpeedDataRate()
     while abs(compass.getHeading() - heading) > error:
         while abs(compass.getHeading() - heading) > error:
             while abs(compass.getHeading() - heading) > error:
