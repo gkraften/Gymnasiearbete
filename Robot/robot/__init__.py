@@ -46,3 +46,4 @@ def turn_to(heading, error=1):
             print(abs(compass.getHeading() - heading))
         motors.stop()
         time.sleep(1)
+        print(abs(compass.getHeading() - heading))
