@@ -50,15 +50,7 @@ def readAxisData():
 
 def getHeading():
     values = readAxisData()
-    return math.degrees(math.atan2(values[1], values[0]))
-
-def convert_to_compass_angle(angle):
-    angle = angle - 360*(angle//360)
-    if angle > 180:
-        angle = -360 + angle
-    return angle
-
-def convert_compass_to_normal_angle(angle):
+    angle = math.degrees(math.atan2(values[1], values[0]))
     if angle < 0:
         angle += 360
     return angle
