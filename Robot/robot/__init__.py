@@ -39,9 +39,9 @@ def turn_to(heading, error=1):
     while abs(compass.getHeading() - heading) > error:
         while abs(compass.getHeading() - heading) > error:
             if compass.getHeading() < heading:
-                motors.right(50)
-            else:
                 motors.left(50)
+            else:
+                motors.right(50)
             while abs(compass.getHeading() - heading) > error:
                 print(abs(compass.getHeading() - heading))
             motors.stop()
