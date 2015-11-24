@@ -36,10 +36,11 @@ import robot.motors as motors
 
 def turn_to(heading, error=1):
     heading = compass.convert_to_compass_angle(heading)
+    heading_n = compass.convert_compass_to_normal_angle(heading)
     compass.setHighSpeedDataRate()
     while abs(compass.getHeading() - heading) > error:
         while abs(compass.getHeading() - heading) > error:
-            if compass.getHeading() < heading:
+            if compass.convert_compass_to_normal_angle(compass.getHeading()) < heading_n:
                 motors.right(50)
             else:
                 motors.left(50)

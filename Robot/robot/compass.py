@@ -58,6 +58,11 @@ def convert_to_compass_angle(angle):
         angle = -360 + angle
     return angle
 
+def convert_compass_to_normal_angle(angle):
+    if angle < 0:
+        angle += 360
+    return angle
+
 setNormalSpeedDataRate()
 bus.write_byte_data(DEVICE_ADDRESS, REGISTER_CRB_REG_M, 0x20)
 wake()
