@@ -38,12 +38,12 @@ def turn_to(heading, error=1):
     heading = compass.convert_to_compass_angle(heading)
     compass.setHighSpeedDataRate()
     while abs(compass.getHeading() - heading) > error:
-        if compass.getHeading() < heading:
-            motors.right(50)
-        else:
-            motors.left(50)
         while abs(compass.getHeading() - heading) > error:
-            print(abs(compass.getHeading() - heading))
-        motors.stop()
-        time.sleep(1)
-        print(abs(compass.getHeading() - heading))
+            if compass.getHeading() < heading:
+                motors.right(50)
+            else:
+                motors.left(50)
+            while abs(compass.getHeading() - heading) > error:
+                print(abs(compass.getHeading() - heading))
+            motors.stop()
+            time.sleep(1)
