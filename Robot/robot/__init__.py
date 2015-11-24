@@ -37,10 +37,11 @@ import robot.motors as motors
 def turn_to(heading, error=1):
     heading = compass.convert_to_compass_angle(heading)
     while abs(compass.getHeading() - heading) > error:
+        if compass.getHeading() < heading:
+            motors.right(50)
+        else:
+            motors.left(50)
         while abs(compass.getHeading() - heading) > error:
-            if compass.getHeading() < heading:
-                motors.right(50)
-            else:
-                motors.left(50)
+            pass
         motors.stop()
         time.sleep(1)
