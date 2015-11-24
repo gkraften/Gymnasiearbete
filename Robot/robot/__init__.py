@@ -2,6 +2,7 @@ from subprocess import call
 import RPi.GPIO as GPIO
 import robot.pins as pins
 import time
+import math
 
 _battery_callback = None
 _battery_pauses = 0
@@ -35,12 +36,11 @@ import robot.compass as compass
 import robot.motors as motors
 
 def turn_to(heading, error=1):
-    while abs(compass.getHeading() - heading) > error:
-        while abs(compass.getHeading() - heading) > error:
-            while abs(compass.getHeading() - heading) > error:
-                if compass.getHeading() < heading:
-                    motors.left(50)
-                else:
-                    motors.right(50)
-            motors.stop()
-            time.sleep(1)
+    while abs(math.degrees(math.atan2(math.sin(math.radians(compass.getHeading() - heading)), math.cos(math.radians(compass.getHeading() - heading))))) > error:
+        while abs(math.degrees(math.atan2(math.sin(math.radians(compass.getHeading() - heading)), math.cos(math.radians(compass.getHeading() - heading))))) > error:
+            if compass.getHeading() < heading:
+                motors.left(50)
+            else:
+                motors.right(50)
+        motors.stop()
+        time.sleep(1)
