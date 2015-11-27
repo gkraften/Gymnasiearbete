@@ -12,7 +12,7 @@ REGISTER_OUT_Z_L_M = 0x06
 REGISTER_OUT_Y_L_M = 0X08
 REGISTER_OUT_Y_H_M = 0X07
 
-_xoffset = 452
+_xoffset = 352
 _yoffset = 19
 
 bus = smbus.SMBus(1)
