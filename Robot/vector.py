@@ -18,7 +18,7 @@ class Vector:
     def to_polar(self):
         return (self.length(), self.angle())
 
-    def project(self, other):
+    def project_onto(self, other):
         return ((self*other)/other.lengthsq())*other
 
     def normalized(self):

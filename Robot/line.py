@@ -6,7 +6,7 @@ class Line:
         self.direction = direction
 
     def distance_to(self, point):
-        return ((self.start + (point - self.start).project(self.direction)) - point).length()
+        return ((self.start + (point - self.start).project_onto(self.direction)) - point).length()
 
     def __str__(self):
         return "(x, y) = {} + t{}".format(self.start, self.direction)
