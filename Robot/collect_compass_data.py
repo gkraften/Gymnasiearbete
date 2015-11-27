@@ -6,7 +6,7 @@ try:
     motors.left(50)
     with open("data.csv", "w") as f:
         while True:
-            data = compass.readAxis()
+            data = compass.readAxisData()
             print("{},{}".format(data[0], data[1]), file=f)
             time.sleep(1/220)
 except:
