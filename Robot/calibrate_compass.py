@@ -17,7 +17,7 @@ try:
     while True:
         x, y, z = compass.readAxisData()
 
-        x_list.appen(x)
+        x_list.append(x)
         y_list.append(y)
         if (len(x_list) >= 2 and len(y_list) >= 2):
             print("{} {} {} {}".format(min(x_list), max(x_list), min(y_list), max(y_list)))
