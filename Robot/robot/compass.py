@@ -9,11 +9,11 @@ REGISTER_OUT_X_H_M = 0x03
 REGISTER_OUT_X_L_M = 0x04
 REGISTER_OUT_Z_H_M = 0x05
 REGISTER_OUT_Z_L_M = 0x06
-REGISTER_OUT_Y_L_M = 0X08
-REGISTER_OUT_Y_H_M = 0X07
+REGISTER_OUT_Y_L_M = 0x08
+REGISTER_OUT_Y_H_M = 0x07
 
-_xoffset = 280
-_yoffset = 3.5
+_xoffset = 352
+_yoffset = 19
 
 bus = smbus.SMBus(1)
 
