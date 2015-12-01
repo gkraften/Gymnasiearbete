@@ -9,7 +9,7 @@ distance = 0
 try:
     while True:
         if GPIO.input(7) == 0:
-            distance += 10,21
+            distance += 10.21
         while GPIO.input(7) == 0:
             pass
 except KeyboardInterrupt:
