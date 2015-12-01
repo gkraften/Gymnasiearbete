@@ -13,4 +13,5 @@ try:
         while GPIO.input(7) == 0:
             pass
 except:
+    print(distance)
     robot.clean()
