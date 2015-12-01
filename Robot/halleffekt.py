@@ -12,6 +12,7 @@ try:
             distance += 10,21
         while GPIO.input(7) == 0:
             pass
-except:
+except KeyboardInterrupt:
     print(distance)
+finally:
     robot.clean()
