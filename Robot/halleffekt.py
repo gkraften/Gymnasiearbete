@@ -4,7 +4,7 @@ import time
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-robot.motors.forward(30)
+robot.motors.forward(50)
 distance = 0
 try:
     while True:
