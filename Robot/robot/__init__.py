@@ -38,8 +38,9 @@ import robot.motors as motors
 def turn_to(heading, error=math.radians(1), speed=50):
     def distance(v, w):
         return math.atan2(math.sin(v-w), math.cos(v-w))
-
+    tries = 0
     while abs(distance(compass.getHeading(), heading)) > error:
+        tries += 1
         while abs(distance(compass.getHeading(), heading)) > error:
             if distance(heading, compass.getHeading()) > 0:
                 motors.left(speed)
@@ -47,3 +48,10 @@ def turn_to(heading, error=math.radians(1), speed=50):
                 motors.right(speed)
         motors.stop()
         time.sleep(1)
+        if tries == 3:
+            tries = 0
+            motors.left()
+            time.sleep(1)
+
+def clean():
+    GPIO.cleanup()
