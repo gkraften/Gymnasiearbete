@@ -18,6 +18,7 @@ try:
     while True:
         while GPIO.input(7) == 1:
             print("ett")
+        distance += 1
         while (GPIO.input(7) == 0):
             print("noll")
 except KeyboardInterrupt:
