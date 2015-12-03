@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 #import robot.motors
 import robot.pins as pins
+import robot
 import time
 
 distance = 0
