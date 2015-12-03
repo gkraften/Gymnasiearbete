@@ -13,15 +13,16 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 #GPIO.add_event_detect(7, GPIO.FALLING, callback=callback, bouncetime=50)
 
+a = False
 robot.motors.forward(30)
 try:
     while True:
-        while GPIO.input(7) == 1:
-            time.sleep(0.000001)
-        distance += 1
-        print(distance)
-        while (GPIO.input(7) == 0):
-            time.sleep(0.000001)
+        if GPIO.input(7) == 0 and a:
+            a = False
+            distance += 1
+        else:
+            if GPIO.input(7) == 1:
+                a = True
 except KeyboardInterrupt:
     print(distance)
 finally:
