@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-#import robot.motors
+import robot.motors
 import robot.pins as pins
 import robot
 import time
@@ -13,20 +13,12 @@ def callback(a):
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-#GPIO.add_event_detect(7, GPIO.FALLING, callback=callback, bouncetime=100)
-
-GPIO.setup(pins.MOTOR_LEFT_1, GPIO.OUT, initial=False)
-GPIO.setup(pins.MOTOR_LEFT_2, GPIO.OUT, initial=False)
-GPIO.output(pins.MOTOR_LEFT_1, True)
-
+robot.motors.forward(30)
 try:
     while True:
-        while GPIO.input(7) == 1:
-            pass
         if GPIO.input(7) == 0:
             distance += 1
-            while GPIO.input(7) == 0:
-                pass
+            print(distance)
 except KeyboardInterrupt:
     print(distance)
 finally:
