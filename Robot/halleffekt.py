@@ -17,7 +17,7 @@ robot.motors.forward(30)
 try:
     while True:
         if GPIO.input(7) == 0:
-            distance += 1
+            print("på")
             while GPIO.input(7) == 0:
                 pass
 except KeyboardInterrupt:
