@@ -16,10 +16,11 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 robot.motors.forward(30)
 try:
     while True:
-        if GPIO.input(7) == 0:
-            distance += 1
-            while GPIO.input(7) == 0:
-                pass
+        print(GPIO.input(7))
+        #if GPIO.input(7) == 0:
+        #    distance += 1
+        #    while GPIO.input(7) == 0:
+        #        pass
 except KeyboardInterrupt:
     print(distance)
 finally:
