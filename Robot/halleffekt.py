@@ -16,11 +16,7 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 robot.motors.forward(30)
 try:
     while True:
-        while GPIO.input(7) == GPIO.HIGH:
-            pass
-        print("BLINK")
-        while GPIO.input(7) == GPIO.LOW:
-            pass
+        print(GPIO.input(7))
 except KeyboardInterrupt:
     print(distance)
 finally:
