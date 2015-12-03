@@ -7,6 +7,7 @@ distance = 0
 def callback(a):
     global distance
     distance += 10.21
+    print(distance)
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
