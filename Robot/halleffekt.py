@@ -17,10 +17,10 @@ robot.motors.forward(30)
 try:
     while True:
         while GPIO.input(7) == 1:
-            pass
+            time.sleep(0.000001)
         distance += 1
         while (GPIO.input(7) == 0):
-            pass
+            time.sleep(0.000001)
 except KeyboardInterrupt:
     print(distance)
 finally:
