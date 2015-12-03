@@ -13,7 +13,7 @@ def callback(a):
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-robot.motors.forward(30)
+robot.motors.LEFT.forward(30)
 try:
     while True:
         if GPIO.input(7) == 0:
