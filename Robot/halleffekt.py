@@ -18,7 +18,7 @@ try:
     while True:
         while GPIO.input(7) == GPIO.HIGH:
             pass
-        print(GPIO.input(7))
+        print("BLINK")
         while GPIO.input(7) == GPIO.LOW:
             pass
 except KeyboardInterrupt:
