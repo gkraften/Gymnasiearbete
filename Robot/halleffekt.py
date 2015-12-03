@@ -20,6 +20,7 @@ try:
         if GPIO.input(7) == 0 and a:
             a = False
             distance += 1
+            print(distance)
         else:
             if GPIO.input(7) == 1:
                 a = True
