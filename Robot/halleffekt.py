@@ -14,8 +14,8 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 #GPIO.add_event_detect(7, GPIO.FALLING, callback=callback, bouncetime=100)
 
-GPIO.setup(pins.MOTOR_LEFT_1, GPIO.OUT)
-GPIO.setup(pins.MOTOR_LEFT_2, GPIO.OUT)
+GPIO.setup(pins.MOTOR_LEFT_1, GPIO.OUT, initial=0)
+GPIO.setup(pins.MOTOR_LEFT_2, GPIO.OUT, initial=0)
 GPIO.output(pins.MOTOR_LEFT_1, 1)
 try:
     while True:
