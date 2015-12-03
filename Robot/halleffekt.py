@@ -18,6 +18,9 @@ try:
     while True:
         GPIO.wait_for_edge(7, GPIO.FALLING)
         distance += 1
+        if (distance == 3):
+            print(distance)
+            break
 except KeyboardInterrupt:
     print(distance)
 finally:
