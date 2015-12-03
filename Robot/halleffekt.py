@@ -13,7 +13,7 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 #GPIO.add_event_detect(7, GPIO.FALLING, callback=callback, bouncetime=200)
 
-robot.motors.forward(50)
+robot.motors.forward(20)
 try:
     while True:
         while GPIO.input(7) == 1:
