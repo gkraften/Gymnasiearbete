@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
-import robot.motors
+#import robot.motors
+import robot.pins as pins
 import time
 
 distance = 0
@@ -13,7 +14,9 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 #GPIO.add_event_detect(7, GPIO.FALLING, callback=callback, bouncetime=100)
 
-robot.motors.forward(30)
+GPIO.setup(pins.MOTOR_LEFT_1, GPIO.OUT)
+GPIO.setup(pins.MOTOR_LEFT_2, GPIO.OUT)
+GPIO.output(pins.MOTOR_LEFT_1, 1)
 try:
     while True:
         GPIO.wait_for_edge(7, GPIO.FALLING)
