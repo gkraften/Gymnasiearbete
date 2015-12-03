@@ -13,13 +13,13 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 #GPIO.add_event_detect(7, GPIO.FALLING, callback=callback, bouncetime=200)
 
-robot.motors.forward(20)
+robot.motors.forward(30)
 try:
     while True:
-        while GPIO.input(7) == 1:
+        while GPIO.input(7) == GPIO.HIGH:
             pass
         print(GPIO.input(7))
-        while GPIO.input(7) == 0:
+        while GPIO.input(7) == GPIO.LOW
             pass
 except KeyboardInterrupt:
     print(distance)
