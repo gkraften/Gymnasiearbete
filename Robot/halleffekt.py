@@ -19,6 +19,7 @@ try:
         while GPIO.input(7) == 1:
             time.sleep(0.000001)
         distance += 1
+        print(distance)
         while (GPIO.input(7) == 0):
             time.sleep(0.000001)
 except KeyboardInterrupt:
