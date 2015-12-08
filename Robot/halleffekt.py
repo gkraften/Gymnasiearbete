@@ -17,11 +17,7 @@ robot.motors.LEFT.forward(100)
 try:
     last = time.time()
     while True:
-        while GPIO.input(7) == 1:
-            pass
-        while GPIO.input(7) == 0:
-            pass
-        if GPIO.input(7) == 1:
+       if GPIO.input(7) == 0:
             dt = time.time() - last
             if (dt > 0.3):
                 last = time.time()
