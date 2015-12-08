@@ -20,7 +20,7 @@ try:
         while GPIO.input(7) == 0:
             pass
         if GPIO.input(7) == 1:
-            print(random.random())
+            distance += 1
 except KeyboardInterrupt:
     print(distance)
 finally:
