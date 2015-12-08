@@ -14,7 +14,7 @@ GPIO.add_event_detect(7, GPIO.FALLING, callback=callback)
 robot.motors.LEFT.forward(100)
 try:
     while True:
-        pass
+        print(GPIO.input(7))
 except KeyboardInterrupt:
     print(distance)
 finally:
