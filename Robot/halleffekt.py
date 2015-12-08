@@ -23,7 +23,7 @@ try:
             pass
         if GPIO.input(7) == 1:
             dt = time.time() - last
-            if (dt < 0.3):
+            if (dt > 0.3):
                 last = time.time()
                 distance += 1
 except KeyboardInterrupt:
