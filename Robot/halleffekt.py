@@ -16,7 +16,7 @@ try:
     while True:
         while GPIO.input(7) == 1:
             pass
-        print(GPIO.input(7))
+        print(distance)
 except KeyboardInterrupt:
     print(distance)
 finally:
