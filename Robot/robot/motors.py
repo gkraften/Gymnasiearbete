@@ -7,8 +7,8 @@ class Motor:
         GPIO.setup(pin1, GPIO.OUT, initial=False)
         GPIO.setup(pin2, GPIO.OUT, initial=False)
 
-        self.pin1 = GPIO.PWM(pin1, 100)
-        self.pin2 = GPIO.PWM(pin2, 100)
+        self.pin1 = GPIO.PWM(pin1, 200)
+        self.pin2 = GPIO.PWM(pin2, 200)
 
         self.pin1.start(0)
         self.pin2.start(0)
