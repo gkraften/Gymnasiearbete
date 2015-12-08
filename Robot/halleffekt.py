@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import robot.motors
 import robot
+import random
 
 distance = 0
 
@@ -19,7 +20,7 @@ try:
         while GPIO.input(7) == 0:
             pass
         if GPIO.input(7) == 1:
-            distance += 1
+            print(random.random())
 except KeyboardInterrupt:
     print(distance)
 finally:
