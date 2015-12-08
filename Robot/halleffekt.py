@@ -11,13 +11,13 @@ def callback(a):
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.add_event_detect(7, GPIO.FALLING, callback=callback)
 
-nums = []
 robot.motors.LEFT.forward(100)
 try:
     while True:
-        nums.append(GPIO.input(7))
+        while GPIO.input(7) == 1:
+            pass
+        print(GPIO.input(7))
 except KeyboardInterrupt:
     print(distance)
-    print(nums)
 finally:
     robot.clean()
