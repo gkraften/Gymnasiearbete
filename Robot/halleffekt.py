@@ -15,7 +15,7 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 robot.motors.LEFT.forward(100)
 try:
-    last = time.time()
+    last = 0
     while True:
        if GPIO.input(7) == 0:
             dt = time.time() - last
