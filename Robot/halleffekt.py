@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import robot.motors
 import robot
 import random
+import time
 
 distance = 0
 
@@ -14,13 +15,17 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 robot.motors.LEFT.forward(100)
 try:
+    last = time.time()
     while True:
         while GPIO.input(7) == 1:
             pass
         while GPIO.input(7) == 0:
             pass
         if GPIO.input(7) == 1:
-            distance += 1
+            dt = time.time() - last
+            if (dt < 0.3):
+                last = time.time()
+                distance += 1
 except KeyboardInterrupt:
     print(distance)
 finally:
