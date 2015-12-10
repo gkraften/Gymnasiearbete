@@ -15,7 +15,7 @@ try:
             dt = time.time() - last
             if (dt > 0.3):
                 last = time.time()
-                distance += 1
+                distance += 10.21
 except KeyboardInterrupt:
     print(distance)
 finally:
