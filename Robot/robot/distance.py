@@ -24,6 +24,7 @@ def _meassure(callback):
 
 def start_meassuring(callback=None):
     if not _meassuring:
+        _meassuring = True
         t = Thread(target=_meassure, args=(callback,))
         t.start()
 
