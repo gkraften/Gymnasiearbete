@@ -23,8 +23,8 @@ try:
             right -= 5
         if direction - new_direction < 0:
             left -= 5
-        # grader norr från motsols
+        # grader norr frï¿½n motsols
 except KeyboardInterrupt:
-    print("Höger kör", right, "Vänster kör", left)
+    print("HÃ¶ger kÃ¶r", right, "VÃ¤nster kÃ¶r", left)
 finally:
     robot.clean()
