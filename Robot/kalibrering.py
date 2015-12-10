@@ -17,14 +17,16 @@ try:
         robot.motors.LEFT.forward(left)
         robot.motors.RIGHT.forward(right)
         direction = compass.getHeading
-        time.sleep(1)
+        time.sleep(0.5)
         new_direction = compass.getHeading
         if direction - new_direction > 0:
             right -= 5
         if direction - new_direction < 0:
             left -= 5
-        # grader norr från motsols
+        if direction - new_direction == 0:
+            done = False
+        # grader norr frÃ¥n motsols
 except KeyboardInterrupt:
-    print("Höger kör", right, "Vänster kör", left)
+    print("HÃ¶ger kÃ¶r", right, "VÃ¤nster kÃ¶r", left)
 finally:
     robot.clean()
