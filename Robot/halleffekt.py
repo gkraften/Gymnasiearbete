@@ -7,7 +7,7 @@ distance = 0
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-robot.motors.LEFT.forward(50)
+robot.motors.LEFT.forward(80)
 robot.motors.RIGHT.forward(100)
 try:
     last = 0

@@ -1,31 +1,35 @@
-import robot.pins as pins
 import RPi.GPIO as GPIO
+import robot.pins as pins
+from threading import Thread
 import time
 
-class Rangefinder:
-    def __init__(self, trig, echo):
-        self.trig = trig
-        self.echo = echo
+GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
 
-        GPIO.setup(trig, GPIO.OUT, initial=False)
-        GPIO.setup(echo, GPIO.IN)
+_meassuring = False
+_d = 0
 
-    def distance(self):
-        GPIO.output(self.trig, True)
-        time.sleep(0.00001)
-        GPIO.output(self.trig, False)
+HALF_CIRCUMFERENCE = 10.21
 
-        while GPIO.input(self.echo) == 0:
-            pass
-        start = time.time()
+def _meassure(callback):
+    global _d
+    last = 0
+    while _meassuring:
+        if GPIO.input(pins.HALL_EFFECT) == 0:
+            dt = time.time() - last
+            if dt < 0.15:
+                _d += HALF_CIRCUMFERENCE
+                if not callback is None:
+                    callback()
 
-        while GPIO.input(self.echo) == 1:
-            pass
 
-        stop = time.time()
+def start_meassuring(callback=None):
+    if not _meassuring:
+        t = Thread(target=_meassure, args=(callback,))
+        t.start()
 
-        return (stop - start) * 17150
+def stop_meassuring():
+    _meassuring = False
+    _d = 0
 
-LEFT = Rangefinder(pins.DISTANCE_LEFT_TRIG, pins.DISTANCE_LEFT_ECHO)
-MIDDLE = Rangefinder(pins.DISTANCE_MID_TRIG, pins.DISTANCE_MID_ECHO)
-RIGHT = Rangefinder(pins.DISTANCE_RIGHT_TRIG, pins.DISTANCE_RIGHT_ECHO)
+def get_distance():
+    return _d
