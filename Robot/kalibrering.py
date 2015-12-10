@@ -27,6 +27,6 @@ try:
             done = False
         # grader norr från motsols
 except KeyboardInterrupt:
-    print("Höger kör", right, "Vänster kör", left)
+    print("H�ger k�r", right, "V�nster k�r", left)
 finally:
     robot.clean()
