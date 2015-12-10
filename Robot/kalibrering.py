@@ -16,9 +16,9 @@ try:
     while done:
         robot.motors.LEFT.forward(left)
         robot.motors.RIGHT.forward(right)
-        direction = compass.getHeading
+        direction = compass.getHeading()
         time.sleep(0.5)
-        new_direction = compass.getHeading
+        new_direction = compass.getHeading()
         if direction - new_direction > 0:
             right -= 5
         if direction - new_direction < 0:
