@@ -20,9 +20,9 @@ try:
         time.sleep(0.5)
         new_direction = compass.getHeading()
         if direction - new_direction > 0:
-            right -= 5
-        if direction - new_direction < 0:
             left -= 5
+        if direction - new_direction < 0:
+            right -= 5
         if direction - new_direction == 0:
             done = False
         # grader norr från motsols
