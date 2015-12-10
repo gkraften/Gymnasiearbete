@@ -13,7 +13,7 @@ try:
     while True:
        if GPIO.input(7) == 0:
             dt = time.time() - last
-            if (dt > 0.3):
+            if (dt > 0.15):
                 last = time.time()
                 distance += 10.21
 except KeyboardInterrupt:
