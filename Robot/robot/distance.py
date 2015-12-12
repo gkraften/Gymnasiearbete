@@ -3,7 +3,7 @@ import robot.pins as pins
 from threading import Thread
 import time
 
-GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
+GPIO.setmode(pins.HALL_EFFECT, GPIO.IN)
 
 _meassuring = False
 _d = 0
