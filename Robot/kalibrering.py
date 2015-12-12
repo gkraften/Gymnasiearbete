@@ -23,7 +23,6 @@ try:
     robot.distance.start_meassuring(wheel_turned)
     while done:
         pass
-    print("redo")
     robot.distance.stop_meassuring()
     while not done:
         robot.motors.LEFT.forward(left)
@@ -31,11 +30,11 @@ try:
         direction = compass.getHeading()
         time.sleep(1)
         new_direction = compass.getHeading()
-        if compass.angleDifference(new_direction, direction) < -0.5:
+        if compass.angleDifference(new_direction, direction) < -0.1:
             left -= 5
-        elif compass.angleDifference(new_direction, direction) > 0.5:
+        elif compass.angleDifference(new_direction, direction) > 0.1:
             right -= 5
-        elif abs(compass.angleDifference(new_direction, direction)) < 0.5:
+        elif abs(compass.angleDifference(new_direction, direction)) < 0.1:
             done = True
         # grader norr från motsols
 except KeyboardInterrupt:
