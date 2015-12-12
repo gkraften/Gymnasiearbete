@@ -11,8 +11,10 @@ right = 100
 direction = 0
 new_direction = 0
 
+done = False
+
 try:
-    while True:
+    while not done:
         robot.motors.LEFT.forward(left)
         robot.motors.RIGHT.forward(right)
         direction = compass.getHeading()
@@ -23,9 +25,11 @@ try:
         elif compass.angleDifference(new_direction, direction) > 0.5:
             right -= 5
         elif abs(compass.angleDifference(new_direction, direction)) < 0.5:
-            break
+            done = True
         # grader norr från motsols
 except KeyboardInterrupt:
-    print("Höger kör {}\tVänster kör {}".format(right, left))
+    pass
 finally:
+    if done:
+        print("Höger kör {}\tVänster kör {}".format(right, left))
     robot.clean()
