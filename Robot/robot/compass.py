@@ -55,6 +55,10 @@ def getHeading():
         angle += 2*math.pi
     return 2*math.pi - angle
 
+def angleDifference(v, w):
+    '''Ger skillnaden mellan v och w. Är talet positivt betyder det att v ligger längre motsols än w; är talet negativt ligger v längre medsols än w.'''
+    return math.atan2(math.sin(v-w), math.cos(v-w))
+
 setHighSpeedDataRate()
 bus.write_byte_data(DEVICE_ADDRESS, REGISTER_CRB_REG_M, 0x20)
 wake()
