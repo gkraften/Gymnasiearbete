@@ -13,12 +13,12 @@ HALF_CIRCUMFERENCE = 10.21
 def _meassure(callback):
     global _d
     global _meassuring
-    GPIO.setmode(GPIO.BOARD)
     last = 0
     while _meassuring:
         if GPIO.input(pins.HALL_EFFECT) == 0:
             dt = time.time() - last
             if dt < 0.15:
+                print("ja")
                 _d += HALF_CIRCUMFERENCE
                 if not callback is None:
                     callback()

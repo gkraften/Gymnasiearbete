@@ -24,6 +24,7 @@ try:
     while done:
         pass
     print("redo")
+    robot.distance.stop_meassuring()
     while not done:
         robot.motors.LEFT.forward(left)
         robot.motors.RIGHT.forward(right)
