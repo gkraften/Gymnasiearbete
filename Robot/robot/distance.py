@@ -12,6 +12,7 @@ HALF_CIRCUMFERENCE = 10.21
 
 def _meassure(callback):
     global _d
+    global _meassuring
     last = 0
     while _meassuring:
         if GPIO.input(pins.HALL_EFFECT) == 0:
@@ -23,6 +24,7 @@ def _meassure(callback):
 
 
 def start_meassuring(callback=None):
+    global _meassuring
     if not _meassuring:
         _meassuring = True
         _d = 0
@@ -30,6 +32,7 @@ def start_meassuring(callback=None):
         t.start()
 
 def stop_meassuring():
+    global _meassuring
     _meassuring = False
 
 def get_distance():
