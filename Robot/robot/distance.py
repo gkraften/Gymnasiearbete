@@ -25,12 +25,12 @@ def _meassure(callback):
 def start_meassuring(callback=None):
     if not _meassuring:
         _meassuring = True
+        _d = 0
         t = Thread(target=_meassure, args=(callback,))
         t.start()
 
 def stop_meassuring():
     _meassuring = False
-    _d = 0
 
 def get_distance():
     return _d

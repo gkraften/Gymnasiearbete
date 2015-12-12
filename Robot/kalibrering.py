@@ -3,6 +3,7 @@ import robot.motors
 import robot
 import time
 import robot.compass as compass
+import robot.distance
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -11,9 +12,10 @@ right = 100
 direction = 0
 new_direction = 0
 
-done = False
+done = True
 
 try:
+
     while not done:
         robot.motors.LEFT.forward(left)
         robot.motors.RIGHT.forward(right)
