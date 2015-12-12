@@ -4,6 +4,7 @@ import robot
 import time
 import robot.compass as compass
 import robot.distance
+import math
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -30,11 +31,11 @@ try:
         direction = compass.getHeading()
         time.sleep(1)
         new_direction = compass.getHeading()
-        if compass.angleDifference(new_direction, direction) < -0.1:
+        if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
             left -= 5
-        elif compass.angleDifference(new_direction, direction) > 0.1:
+        elif compass.angleDifference(new_direction, direction) > math.radians(0.1):
             right -= 5
-        elif abs(compass.angleDifference(new_direction, direction)) < 0.1:
+        elif abs(compass.angleDifference(new_direction, direction)) < math.radians(0.1):
             done = True
         # grader norr från motsols
 except KeyboardInterrupt:
