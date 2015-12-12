@@ -14,7 +14,15 @@ new_direction = 0
 
 done = True
 
+def wheel_turned():
+    global done
+    done = False
+
 try:
+    robot.motors.forward(100)
+    robot.distance.start_meassuring(wheel_turned)
+    while done:
+        pass
 
     while not done:
         robot.motors.LEFT.forward(left)
