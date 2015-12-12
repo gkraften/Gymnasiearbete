@@ -23,7 +23,7 @@ try:
     robot.distance.start_meassuring(wheel_turned)
     while done:
         pass
-
+    print("redo")
     while not done:
         robot.motors.LEFT.forward(left)
         robot.motors.RIGHT.forward(right)
