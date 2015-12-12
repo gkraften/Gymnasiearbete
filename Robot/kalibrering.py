@@ -18,7 +18,7 @@ try:
         robot.motors.LEFT.forward(left)
         robot.motors.RIGHT.forward(right)
         direction = compass.getHeading()
-        time.sleep(0.5)
+        time.sleep(1)
         new_direction = compass.getHeading()
         if compass.angleDifference(new_direction, direction) < -0.5:
             left -= 5
