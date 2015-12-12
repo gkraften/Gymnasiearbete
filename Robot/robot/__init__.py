@@ -3,30 +3,51 @@ import RPi.GPIO as GPIO
 import robot.pins as pins
 import time
 import math
+from threading import Thread
 
 _battery_callback = None
 _battery_pauses = 0
+_checking_battery = False
 
 GPIO.setmode(GPIO.BOARD)
 
 GPIO.setup(pins.BATTERY, GPIO.IN)
 
+def _check_battery():
+    global _checking_battery
+    global _battery_callback
+
+    while _checking_battery:
+        if GPIO.input(pins.BATTERY) == 0:
+            _battery_callback()
+        time.sleep(1)
+
 def on_battery_low(callback):
     global _battery_callback
+    global _checking_battery
+
     _battery_callback = callback
-    GPIO.remove_event_detect(pins.BATTERY)
-    GPIO.add_event_detect(pins.BATTERY, GPIO.FALLING, callback=lambda a: callback(), bouncetime=300)
+    if _battery_pauses == 0 and not _checking_battery:
+        resume_battery_detection()
+
 
 def pause_battery_detection():
     global _battery_pauses
-    GPIO.remove_event_detect(pins.BATTERY)
+    global _checking_battery
+
+    _checking_battery = False
     _battery_pauses += 1
 
 def resume_battery_detection():
     global _battery_pauses
-    _battery_pauses -= 1
+    global _checking_battery
+
+    if _battery_pauses > 0:
+        _battery_pauses -= 1
     if not _battery_callback is None and _battery_pauses == 0:
-        on_battery_low(_battery_callback)
+        _checking_battery = True
+        t = Thread(target=_check_battery)
+        t.start()
 
 def halt():
     call(["halt"])

@@ -13,20 +13,28 @@ class Motor:
         self.pin1.start(0)
         self.pin2.start(0)
 
+        self.spinning = False
+
     def forward(self, speed=100):
-        robot.pause_battery_detection()
+        if not self.spinning:
+            robot.pause_battery_detection()
+            self.spinning = True
         self.pin1.ChangeDutyCycle(speed)
         self.pin2.ChangeDutyCycle(0)
 
     def backward(self, speed=100):
-        robot.pause_battery_detection()
+        if not self.spinning:
+            robot.pause_battery_detection()
+            self.spinning = True
         self.pin2.ChangeDutyCycle(speed)
         self.pin1.ChangeDutyCycle(0)
 
-    def stop(self, speed=100):
-        robot.resume_battery_detection()
+    def stop(self):
         self.pin1.ChangeDutyCycle(0)
         self.pin2.ChangeDutyCycle(0)
+        if self.spinning:
+            robot.resume_battery_detection()
+            self.spinning = False
 
 LEFT = Motor(pins.MOTOR_LEFT_1, pins.MOTOR_LEFT_2)
 RIGHT = Motor(pins.MOTOR_RIGHT_1, pins.MOTOR_RIGHT_2)
