@@ -14,7 +14,7 @@ robot.on_battery_low(low_battery)
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-amount = 100
+amount = 70
 direction = 0
 new_direction = 0
 done = False
@@ -23,7 +23,8 @@ motor = None
 angle = 0
 
 try:
-    robot.motors.forward(100)
+    robot.motors.LEFT.forward(amount)
+    robot.motors.RIGHT.forward(100)
     direction = compass.getHeading()
     time.sleep(1)
     new_direction = compass.getHeading()
