@@ -7,6 +7,8 @@ import vector
 import time
 import sys
 
+motor.on_battery_low(robot.halt)
+
 motors.forward()
 time.sleep(5)
 robot.clean()
