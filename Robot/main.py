@@ -11,7 +11,7 @@ pos = Vector(0, 0)
 
 distance.start_measuring()
 motors.forward()
-time.sleep(2)
+time.sleep(5)
 motors.stop()
 after = compass.getHeading()
 distance.stop_measuring()
