@@ -14,7 +14,7 @@ robot.on_battery_low(low_battery)
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-amount = 100
+amount = 73
 direction = 0
 new_direction = 0
 done = False
@@ -41,7 +41,7 @@ try:
     while not done:
         motor.forward(amount)
         direction = compass.getHeading()
-        time.sleep(0.75)
+        time.sleep(1)
         new_direction = compass.getHeading()
         if compass.angleDifference(new_direction, direction) < angle*math.radians(0.1):
             amount -= 7
