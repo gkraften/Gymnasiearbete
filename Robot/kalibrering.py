@@ -24,7 +24,9 @@ angle = 0
 
 try:
     robot.motors.forward(100)
+    direction = compass.getHeading()
     time.sleep(2)
+    new_direction = compass.getHeading()
     if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
         motor = robot.motors.LEFT
         angle = -1
