@@ -51,5 +51,5 @@ try:
 except KeyboardInterrupt:
     print("Avbryter")
 finally:
-    print("Höger kör {}\tVänster kör {}".format(right, left))
+    print("{} är {}".format("Höger" if angle == 1 else "Vänster", amount))
     robot.clean()
