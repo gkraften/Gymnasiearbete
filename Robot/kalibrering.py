@@ -54,7 +54,7 @@ try:
                 amount += 1
             elif right:
                 amount -= 5
-        elif abs(compass.angleDifference(new_direction, direction)) < math.radians(0.1):
+        else:
             done = True
         # grader norr från motsols
 except KeyboardInterrupt:
