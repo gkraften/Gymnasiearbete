@@ -3,7 +3,7 @@ import robot.motors as motors
 import time
 
 try:
-    motors.left(50)
+    motors.left(100)
     with open("data.csv", "w") as f:
         while True:
             data = compass.readAxisData()
