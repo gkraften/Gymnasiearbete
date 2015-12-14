@@ -1,6 +1,8 @@
 import robot.motors
 import sys
 
+#Osäkert om det här programmet gör det jag vill
+
 if len(sys.argv) != 3:
     print("Du måste skriva kalibreringsskit")
     sys.exit()
