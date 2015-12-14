@@ -43,13 +43,13 @@ def stop():
     LEFT.stop()
     RIGHT.stop()
 
-def forward(speed=100):
-    LEFT.forward(speed)
-    RIGHT.forward(speed)
+def forward():
+    LEFT.forward(80)
+    RIGHT.forward(100)
 
-def backward(speed=100):
-    LEFT.backward(speed)
-    RIGHT.backward(speed)
+def backward():
+    LEFT.backward(80)
+    RIGHT.backward(100)
 
 def left(speed=100):
     LEFT.backward(speed)
