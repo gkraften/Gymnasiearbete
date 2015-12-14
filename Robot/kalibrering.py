@@ -6,6 +6,12 @@ import robot.compass as compass
 import robot.distance
 import math
 
+def low_battery():
+    print("Lågt batteri!")
+    robot.halt()
+
+robot.on_battery_low(low_battery)
+
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 left = 100
