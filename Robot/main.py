@@ -9,4 +9,4 @@ import sys
 
 motors.forward()
 time.sleep(5)
-motors.clean()
+robot.clean()
