@@ -56,14 +56,12 @@ def halt():
 import robot.compass as compass
 import robot.motors as motors
 
-def turn_to(heading, error=math.radians(1), speed=50):
-    def distance(v, w):
-        return math.atan2(math.sin(v-w), math.cos(v-w))
+def turn_to(heading, error=math.radians(1), speed=80):
     tries = 0
-    while abs(distance(compass.getHeading(), heading)) > error:
+    while abs(compass.angleDifference(compass.getHeading(), heading)) > error:
         tries += 1
-        while abs(distance(compass.getHeading(), heading)) > error:
-            if distance(heading, compass.getHeading()) > 0:
+        while abs(compass.angleDifference(compass.getHeading(), heading)) > error:
+            if compass.angleDifference(heading, compass.getHeading()) > 0:
                 motors.left(speed)
             else:
                 motors.right(speed)
@@ -71,7 +69,7 @@ def turn_to(heading, error=math.radians(1), speed=50):
         time.sleep(1)
         if tries == 3:
             tries = 0
-            motors.left()
+            motors.left(50)
             time.sleep(1)
 
 def clean():
