@@ -17,5 +17,5 @@ try:
         pass
 except KeyboardInterrupt:
     distance.stop_measuring()
-    print(distance.get_distance() - distance.HALF_CIRCUMFERENCE)
+    print(distance.get_distance() - 2*distance.HALF_CIRCUMFERENCE)
     robot.clean()
