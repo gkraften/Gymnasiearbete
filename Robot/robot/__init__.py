@@ -18,8 +18,11 @@ def _check_battery():
     global _battery_callback
 
     while _checking_battery:
-        if GPIO.input(pins.BATTERY) == 0:
-            _battery_callback()
+        try:
+            if GPIO.input(pins.BATTERY) == 0:
+                _battery_callback()
+        except RuntimeError:
+            break
         time.sleep(1)
 
 def on_battery_low(callback):
