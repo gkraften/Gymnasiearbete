@@ -16,7 +16,7 @@ motors.stop()
 after = compass.getHeading()
 distance.stop_measuring()
 pos += vector.from_polar(distance.get_distance(), after)
-print(distance.get_distance())
+print("{}\t{}".format(distance.get_distance(), pos.length()))
 robot.clean()
 sys.exit()
 
