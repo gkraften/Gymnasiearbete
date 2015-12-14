@@ -44,12 +44,12 @@ try:
         direction = compass.getHeading()
         time.sleep(1)
         new_direction = compass.getHeading()
-        if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
+        if compass.angleDifference(new_direction, direction) < -math.radians(1):
             if left:
                 amount -= 5
             elif right:
                 amount += 1
-        elif compass.angleDifference(new_direction, direction) > math.radians(0.1):
+        elif compass.angleDifference(new_direction, direction) > math.radians(1):
             if left:
                 amount += 1
             elif right:
