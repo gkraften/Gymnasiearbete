@@ -14,28 +14,39 @@ robot.on_battery_low(low_battery)
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-left = 100
-right = 100
+amount = 100
 direction = 0
 new_direction = 0
+done = False
+
+motor = None
+angle = 0
 
 try:
-    while True:
-        robot.motors.LEFT.forward(left)
-        robot.motors.RIGHT.forward(right)
+    robot.motors.forward(100)
+    time.sleep(2)
+    if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
+        motor = robot.motors.LEFT
+        angle = -1
+    elif compass.angleDifference(new_direction, direction) > math.radians(0.1):
+        motor = robot.motors.RIGHT
+        angle = 1
+    elif abs(compass.angleDifference(new_direction, direction)) < math.radians(0.1):
+        print("Allt är perf")
+        done = True
+
+
+    while not done:
+        motor.forward(amount)
         direction = compass.getHeading()
         time.sleep(0.75)
         new_direction = compass.getHeading()
-        if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
-            left -= 2
-            print("Vänster", left)
-
-        elif compass.angleDifference(new_direction, direction) > math.radians(0.1):
-            right -= 2
-            print("Höger:", right)
-
+        if compass.angleDifference(new_direction, direction) < angle*math.radians(0.1):
+            amount -= 1
+        elif compass.angleDifference(new_direction, direction) > -angle*math.radians(0.1):
+            amount += 1
         elif abs(compass.angleDifference(new_direction, direction)) < math.radians(0.1):
-            break
+            done = True
         # grader norr från motsols
 except KeyboardInterrupt:
     print("Avbryter")
