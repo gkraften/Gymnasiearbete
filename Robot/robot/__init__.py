@@ -74,3 +74,4 @@ def turn_to(heading, error=math.radians(1), speed=80):
 
 def clean():
     GPIO.cleanup()
+    compass.sleep()

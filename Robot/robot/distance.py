@@ -5,16 +5,16 @@ import time
 
 GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
 
-_meassuring = False
+_measuring = False
 _d = 0
 
 HALF_CIRCUMFERENCE = 10.21
 
-def _meassure(callback):
+def _measure(callback):
     global _d
-    global _meassuring
+    global _measuring
     last = 0
-    while _meassuring:
+    while _measuring:
         if GPIO.input(pins.HALL_EFFECT) == 0:
             dt = time.time() - last
             if dt > 0.15:
@@ -24,17 +24,17 @@ def _meassure(callback):
                     callback()
 
 
-def start_meassuring(callback=None):
-    global _meassuring
-    if not _meassuring:
-        _meassuring = True
+def start_measuring(callback=None):
+    global _measuring
+    if not _measuring:
+        _measuring = True
         _d = 0
-        t = Thread(target=_meassure, args=(callback,))
+        t = Thread(target=_measure, args=(callback,))
         t.start()
 
-def stop_meassuring():
-    global _meassuring
-    _meassuring = False
+def stop_measuring():
+    global _measuring
+    _measuring = False
 
 def get_distance():
     return _d

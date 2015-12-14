@@ -1,42 +1,31 @@
-import robot.motors
-import robot.distance
-import robot.pins as pins
+import robot.motors as motors
 import robot
-import random
+import robot.compass as compass
+import robot.distance as distance
+from vector import Vector
+import vector
 import time
-import RPi.GPIO as GPIO
 
-robot.on_battery_low(lambda: print("Lågt batteri!"))
-print(GPIO.input(pins.BATTERY))
+pos = Vector(0, 0)
 
-robot.motors.forward()
+distance.start_measuring()
+motors.forward()
+time.sleep(2)
+motors.stop()
+after = compass.getHeading()
+distance.stop_measuring()
+pos += vector.from_polar(distance.get_distance(), after)
 
-try:
-    while True:
-        if (robot.distance.get_left() < 30 and robot.distance.get_right() < 30):
-            robot.motors.backward()
-            time.sleep(1)
-            random.choice([robot.motors.left, robot.motors.right])()
-            time.sleep(0.5)
-            robot.motors.forward()
-        elif robot.distance.get_mid() < 10:
-            robot.motors.right()
-            time.sleep(1)
-            robot.motors.forward()
-        elif robot.distance.get_mid() < 20:
-            robot.motors.backward()
-            time.sleep(0.5)
-            random.choice([robot.motors.left, robot.motors.right])()
-            time.sleep(0.5)
-            robot.motors.forward()
-        elif (robot.distance.get_left() < 20):
-            robot.motors.right()
-            time.sleep(0.5)
-            robot.motors.forward()
-        elif (robot.distance.get_right() < 20):
-            robot.motors.left()
-            time.sleep(0.5)
-            robot.motors.forward()
-        time.sleep(0.1)
-finally:
-    GPIO.cleanup()
+motors.right(50)
+time.sleep(2)
+motors.stop()
+
+distance.start_measuring()
+motors.forward()
+time.sleep(2)
+motors.stop()
+after = compass.getHeading()
+distance.stop_measuring()
+pos += vector.from_polar(distance.get_distance(), after)
+
+print("Avstånd från start: {}".format(pos.length()))
