@@ -9,13 +9,25 @@ import sys
 
 robot.on_battery_low(robot.halt)
 
+pos = Vector(0, 0)
+
 distance.start_measuring()
 motors.forward()
+time.sleep(2)
+motors.stop()
+distance.stop_measuring()
+pos += vector.from_polar(distance.get_distance, compass.getHeading())
 
-try:
-    while True:
-        pass
-except KeyboardInterrupt:
-    distance.stop_measuring()
-    print(distance.get_distance() - 2*distance.HALF_CIRCUMFERENCE)
-    robot.clean()
+motors.right(50)
+time.sleep(1)
+motors.stop()
+
+distance.start_measuring()
+motors.forward()
+time.sleep(2)
+motors.stop()
+distance.stop_measuring()
+pos += vector.from_polar(distance.get_distance, compass.getHeading())
+
+print(pos.length())
+robot.clean()
