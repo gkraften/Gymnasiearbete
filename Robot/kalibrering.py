@@ -24,12 +24,12 @@ try:
         robot.motors.LEFT.forward(left)
         robot.motors.RIGHT.forward(right)
         direction = compass.getHeading()
-        time.sleep(1)
+        time.sleep(2)
         new_direction = compass.getHeading()
         if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
-            left -= 5
+            left -= 3
         elif compass.angleDifference(new_direction, direction) > math.radians(0.1):
-            right -= 5
+            right -= 3
         elif abs(compass.angleDifference(new_direction, direction)) < math.radians(0.1):
             break
         # grader norr från motsols
