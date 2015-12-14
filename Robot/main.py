@@ -17,7 +17,7 @@ def f():
 
 distance.start_measuring(f)
 motors.forward()
-time.sleep(2)
+time.sleep(3)
 motors.stop()
 distance.stop_measuring()
 
