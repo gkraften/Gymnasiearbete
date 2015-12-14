@@ -48,7 +48,7 @@ def forward():
     RIGHT.forward(100)
 
 def backward():
-    LEFT.backward(90)
+    LEFT.backward(100)
     RIGHT.backward(100)
 
 def left(speed=100):
