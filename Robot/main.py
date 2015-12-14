@@ -9,6 +9,12 @@ import sys
 
 robot.on_battery_low(robot.halt)
 
+t = time.time()
 motors.forward()
-time.sleep(5)
-robot.clean()
+
+try:
+    while True:
+        pass
+except KeyboardInterrupt:
+    robot.clean()
+    print(25.22*(time.time() - t))
