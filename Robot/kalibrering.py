@@ -14,45 +14,51 @@ robot.on_battery_low(low_battery)
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-amount = 70
+amount = 100
 direction = 0
 new_direction = 0
 done = False
 
-motor = None
-angle = 0
+left = False
+right = False
 
 try:
-    robot.motors.LEFT.forward(amount)
-    robot.motors.RIGHT.forward(100)
+    robot.motors.forward(100)
     direction = compass.getHeading()
     time.sleep(1)
     new_direction = compass.getHeading()
     if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
-        motor = robot.motors.LEFT
-        angle = -1
+        left = True
     elif compass.angleDifference(new_direction, direction) > math.radians(0.1):
-        motor = robot.motors.RIGHT
-        angle = 1
+        right = True
     elif abs(compass.angleDifference(new_direction, direction)) < math.radians(0.1):
         print("Allt är perf")
         done = True
 
 
     while not done:
-        motor.forward(amount)
+        if left:
+            robot.motors.LEFT.forward(amount)
+        elif right:
+            robot.motors.RIGHT.forward(amount)
         direction = compass.getHeading()
         time.sleep(1)
         new_direction = compass.getHeading()
-        if compass.angleDifference(new_direction, direction) < angle*math.radians(0.1):
-            amount -= 7
-        elif compass.angleDifference(new_direction, direction) > -angle*math.radians(0.1):
-            amount += 1
+        if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
+            if left:
+                amount -= 5
+            elif right:
+                amount += 1
+        elif compass.angleDifference(new_direction, direction) > math.radians(0.1):
+            if left:
+                amount += 1
+            elif right:
+                amount -= 5
         elif abs(compass.angleDifference(new_direction, direction)) < math.radians(0.1):
             done = True
         # grader norr från motsols
 except KeyboardInterrupt:
     print("Avbryter")
 finally:
-    print("{} är {}".format("Höger" if angle == 1 else "Vänster", amount))
+    print("{} är {}".format("Höger" if right else "Vänster", amount))
     robot.clean()
