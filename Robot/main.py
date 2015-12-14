@@ -11,23 +11,19 @@ robot.on_battery_low(robot.halt)
 
 pos = Vector(0, 0)
 
-distance.start_measuring()
 motors.forward()
 time.sleep(2)
 motors.stop()
-distance.stop_measuring()
-pos += vector.from_polar(distance.get_distance() - 2*distance.HALF_CIRCUMFERENCE, compass.getHeading())
+pos += vector.from_polar(25.22*2, compass.getHeading())
 
 motors.right(50)
 time.sleep(1)
 motors.stop()
 
-distance.start_measuring()
 motors.forward()
 time.sleep(2)
 motors.stop()
-distance.stop_measuring()
-pos += vector.from_polar(distance.get_distance() - 2*distance.HALF_CIRCUMFERENCE, compass.getHeading())
+pos += vector.from_polar(25.22*2, compass.getHeading())
 
 print(pos.length())
 robot.clean()
