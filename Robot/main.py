@@ -5,6 +5,7 @@ import robot.distance as distance
 from vector import Vector
 import vector
 import time
+import sys
 
 pos = Vector(0, 0)
 
@@ -15,9 +16,12 @@ motors.stop()
 after = compass.getHeading()
 distance.stop_measuring()
 pos += vector.from_polar(distance.get_distance(), after)
+print(distance.get_distance())
+robot.clean()
+sys.exit()
 
 motors.right(50)
-time.sleep(2)
+time.sleep(1)
 motors.stop()
 
 distance.start_measuring()
