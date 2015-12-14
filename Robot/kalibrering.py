@@ -23,37 +23,16 @@ left = False
 right = False
 
 try:
-    robot.motors.forward(100)
-    direction = compass.getHeading()
-    time.sleep(1)
-    new_direction = compass.getHeading()
-    if compass.angleDifference(new_direction, direction) < -math.radians(0.1):
-        left = True
-    elif compass.angleDifference(new_direction, direction) > math.radians(0.1):
-        right = True
-    elif abs(compass.angleDifference(new_direction, direction)) < math.radians(0.1):
-        print("Allt är perf")
-        done = True
-
-
+    robot.motors.RIGHT.forward(100)
     while not done:
-        if left:
-            robot.motors.LEFT.forward(amount)
-        elif right:
-            robot.motors.RIGHT.forward(amount)
+        robot.motors.LEFT.forward(amount)
         direction = compass.getHeading()
         time.sleep(1)
         new_direction = compass.getHeading()
         if compass.angleDifference(new_direction, direction) < -math.radians(1):
-            if left:
-                amount -= 5
-            elif right:
-                amount += 1
+            amount -= 5
         elif compass.angleDifference(new_direction, direction) > math.radians(1):
-            if left:
-                amount += 1
-            elif right:
-                amount -= 5
+            amount += 1
         else:
             done = True
         # grader norr från motsols
