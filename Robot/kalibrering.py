@@ -14,7 +14,7 @@ robot.on_battery_low(low_battery)
 
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-amount = 100
+amount = 82
 direction = 0
 new_direction = 0
 done = False
