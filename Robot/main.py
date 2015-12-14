@@ -17,7 +17,7 @@ motors.stop()
 pos += vector.from_polar(25.22*2, compass.getHeading())
 
 motors.right(50)
-time.sleep(1)
+time.sleep(2)
 motors.stop()
 
 motors.forward()
