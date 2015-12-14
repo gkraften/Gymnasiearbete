@@ -9,12 +9,13 @@ import sys
 
 robot.on_battery_low(robot.halt)
 
-t = time.time()
+distance.start_measuring()
 motors.forward()
 
 try:
     while True:
         pass
 except KeyboardInterrupt:
+    distance.stop_measuring()
+    print(distance.get_distance())
     robot.clean()
-    print(25.22*(time.time() - t))
