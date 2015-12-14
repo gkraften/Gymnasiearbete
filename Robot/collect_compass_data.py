@@ -1,5 +1,6 @@
 import robot.compass as compass
 import robot.motors as motors
+import robot
 import time
 
 try:
@@ -12,3 +13,4 @@ try:
 except:
     motors.stop()
     compass.sleep()
+    robot.clean()
