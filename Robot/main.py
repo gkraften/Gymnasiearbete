@@ -32,7 +32,7 @@ distance.start_measuring()
 motors.forward()
 time.sleep(2)
 motors.stop()
-distance.start_measuring()
+distance.stop_measuring()
 
 print(pos.length())
 print(d)
