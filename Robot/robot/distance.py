@@ -26,7 +26,6 @@ def _measure(callback):
                     callback()
         #except RuntimeError:
         #    break
-    print("Loopen är klar")
 
 
 def start_measuring(callback=None):
