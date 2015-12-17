@@ -19,7 +19,7 @@ def _measure(callback):
         #try:
         if GPIO.input(pins.HALL_EFFECT) == 0:
             dt = time.time() - last
-            if dt > 0.15:
+            if dt > 0.25:
                 last = time.time()
                 _d += HALF_CIRCUMFERENCE
                 if not callback is None:
