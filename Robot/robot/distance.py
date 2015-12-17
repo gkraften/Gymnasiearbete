@@ -17,7 +17,7 @@ def _measure(callback):
     global _measuring
     last = 0
     while _measuring:
-        if GPIO.add_event_detected(pins.HALL_EFFECT):
+        if GPIO.event_detected(pins.HALL_EFFECT):
             _d += 1
             if not callback is None:
                 callback()
