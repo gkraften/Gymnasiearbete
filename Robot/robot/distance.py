@@ -7,6 +7,7 @@ GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
 
 _measuring = False
 _d = 0
+_thread = None
 
 HALF_CIRCUMFERENCE = 10.21
 
@@ -25,20 +26,22 @@ def _measure(callback):
                     callback()
         #except RuntimeError:
         #    break
-    print("DÖDAA")
 
 
 def start_measuring(callback=None):
     global _measuring
+    global _thread
     if not _measuring:
         _measuring = True
         _d = 0
-        t = Thread(target=_measure, args=(callback,))
-        t.start()
+        _thread = Thread(target=_measure, args=(callback,))
+        _thread.start()
 
 def stop_measuring():
     global _measuring
+    global _thread
     _measuring = False
+    _thread.join()
 
 def get_distance():
     return _d
