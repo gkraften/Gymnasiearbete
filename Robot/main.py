@@ -24,7 +24,7 @@ time.sleep(5)
 motors.stop()
 distance.stop_measuring()
 
-motors.right(50)
+motors.right()
 time.sleep(3)
 motors.stop()
 
