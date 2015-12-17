@@ -4,7 +4,7 @@ from threading import Thread
 import time
 
 GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
-GPIO.add_event_detect(pins.HALL_EFFECT, GPIO.FALLING)
+GPIO.add_event_detect(pins.HALL_EFFECT, GPIO.FALLING, bouncetime=250)
 
 _measuring = False
 _d = 0
