@@ -4,6 +4,7 @@ from threading import Thread
 import time
 
 GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
+GPIO.add_event_detect(pins.HALL_EFFECT, GPIO.FALLING)
 
 _measuring = False
 _d = 0
@@ -16,10 +17,10 @@ def _measure(callback):
     global _measuring
     last = 0
     while _measuring:
-        GPIO.wait_for_edge(pins.HALL_EFFECT, GPIO.FALLING)
-        _d += HALF_CIRCUMFERENCE
-        if not callback is None:
-            callback()
+        if GPIO.add_event_detected(pins.HALL_EFFECT):
+            _d += 1
+            if not callback is None:
+                callback()
         #try:
         #if GPIO.input(pins.HALL_EFFECT) == 0:
         #    dt = time.time() - last
