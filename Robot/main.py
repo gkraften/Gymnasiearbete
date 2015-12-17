@@ -24,6 +24,16 @@ time.sleep(5)
 motors.stop()
 distance.stop_measuring()
 
+motors.right(50)
+time.sleep(3)
+motors.stop()
+
+distance.start_measuring()
+motors.forward()
+time.sleep(2)
+motors.stop()
+distance.start_measuring()
+
 print(pos.length())
 print(d)
 robot.clean()
