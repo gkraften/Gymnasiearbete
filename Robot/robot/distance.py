@@ -16,14 +16,18 @@ def _measure(callback):
     global _measuring
     last = 0
     while _measuring:
+        GPIO.wait_for_edge(pins.HALL_EFFECT, GPIO.FALLING)
+        _d += HALF_CIRCUMFERENCE
+        if not callback is None:
+            callback()
         #try:
-        if GPIO.input(pins.HALL_EFFECT) == 0:
-            dt = time.time() - last
-            if dt > 0.25:
-                last = time.time()
-                _d += HALF_CIRCUMFERENCE
-                if not callback is None:
-                    callback()
+        #if GPIO.input(pins.HALL_EFFECT) == 0:
+        #    dt = time.time() - last
+        #    if dt > 0.25:
+        #        last = time.time()
+        #        _d += HALF_CIRCUMFERENCE
+        #        if not callback is None:
+        #            callback()
         #except RuntimeError:
         #    break
 
