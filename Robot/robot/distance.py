@@ -25,6 +25,7 @@ def _measure(callback):
                     callback()
         #except RuntimeError:
         #    break
+    print("DÖDAA")
 
 
 def start_measuring(callback=None):
