@@ -11,6 +11,7 @@ if len(sys.argv) == 1:
 
 pid = PID(float(sys.argv[1]), 0, 0, -50, 50)
 pid.set_target(0)
+print(pid.kp)
 
 compass.wake()
 motors.LEFT.forward(100)
