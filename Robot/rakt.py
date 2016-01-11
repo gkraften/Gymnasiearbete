@@ -40,5 +40,6 @@ try:
         time.sleep(0.5)
 except KeyboardInterrupt:
     print("Vänster: {}%\tHöger: {}%".format(l_speed, r_speed))
-    robot.clean()
+finally:
     compass.sleep()
+    robot.clean()
