@@ -24,7 +24,7 @@ try:
 
         direction = compass.getHeading()
         ret = pid.update(compass.angleDifference(last_direction, direction), dt)
-        print(math.degrees(angleDifference(last_direction, direction)))
+        print(math.degrees(compass.angleDifference(last_direction, direction)))
         last_direction = direction
 
         if ret < 0:
