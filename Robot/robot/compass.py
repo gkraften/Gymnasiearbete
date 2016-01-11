@@ -35,7 +35,7 @@ def setNormalSpeedDataRate():
     bus.write_byte_data(DEVICE_ADDRESS, REGISTER_CRA_REG_M, 0x10) # 15Hz
 
 def readAxisData():
-    xl = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_X_L_M)
+    xl = bus.read_byte_data(c, REGISTER_OUT_X_L_M)
     xh = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_X_H_M)
     yl = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_Y_L_M)
     yh = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_Y_H_M)
