@@ -38,7 +38,7 @@ try:
         motors.RIGHT.forward(r_speed)
 
         time.sleep(0.5)
-except:
+except KeyboardInterrupt:
     print("Vänster: {}%\tHöger: {}%".format(l_speed, r_speed))
     robot.clean()
     compass.sleep()
