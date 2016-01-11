@@ -23,8 +23,8 @@ try:
         last = time.time()
 
         direction = compass.getHeading()
-        ret = pid.update(last_direction - direction, dt)
-        print(math.degrees(last_direction - direction))
+        ret = pid.update(compass.angleDifference(last_direction - direction), dt)
+        print(math.degrees(angleDifference(last_direction - direction)))
         last_direction = direction
 
         if ret < 0:
