@@ -10,7 +10,7 @@ pid = PID(float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), -50, 50)
 pid.set_target(0)
 
 compass.wake()
-motors.LEFT.forward(100)
+motors.LEFT.forward(97.58523148413154)
 motors.RIGHT.forward(100)
 
 try:
@@ -37,7 +37,7 @@ try:
         motors.LEFT.forward(l_speed)
         motors.RIGHT.forward(r_speed)
 
-        time.sleep(0.25)
+        time.sleep(0.5)
 except:
     print("Vänster: {}%\tHöger: {}%".format(l_speed, r_speed))
     robot.clean()
