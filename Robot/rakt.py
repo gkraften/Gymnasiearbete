@@ -23,6 +23,7 @@ try:
 
         direction = compass.getHeading()
         ret = pid.update(direction - last_direction, dt)
+        print(ret)
         last_direction = direction
 
         if ret > 0:
