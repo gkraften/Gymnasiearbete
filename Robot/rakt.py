@@ -39,7 +39,7 @@ try:
         motors.LEFT.forward(l_speed)
         motors.RIGHT.forward(r_speed)
 
-        time.sleep(0.1)
+        time.sleep(0.05)
 except:
     print("Vänster: {}%\tHöger: {}%".format(l_speed, r_speed))
     robot.clean()
