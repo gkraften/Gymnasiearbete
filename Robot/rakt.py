@@ -7,7 +7,6 @@ import sys
 
 pid = PID(float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), -50, 50)
 pid.set_target(0)
-print(pid.kp)
 
 compass.wake()
 motors.LEFT.forward(100)
@@ -23,7 +22,7 @@ try:
         last = time.time()
 
         direction = compass.getHeading()
-        ret = pid.update(last_direction - direction, dt)
+        ret = pid.update(direction - last_direction, dt)
         last_direction = direction
 
         if ret > 0:
