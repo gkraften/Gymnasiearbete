@@ -4,6 +4,7 @@ from robot import compass
 import time
 from controller import PID
 import sys
+import math
 
 pid = PID(float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), -50, 50)
 pid.set_target(0)
@@ -23,7 +24,7 @@ try:
 
         direction = compass.getHeading()
         ret = pid.update(direction - last_direction, dt)
-        print(ret)
+        print(math.degrees(direction))
         last_direction = direction
 
         if ret > 0:
