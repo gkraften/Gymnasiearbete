@@ -5,11 +5,7 @@ import time
 from controller import PID
 import sys
 
-if len(sys.argv) == 1:
-    print("Du måste välja kp")
-    sys.exit()
-
-pid = PID(float(sys.argv[1]), 0, 0, -50, 50)
+pid = PID(float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), -50, 50)
 pid.set_target(0)
 print(pid.kp)
 
