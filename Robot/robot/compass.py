@@ -61,4 +61,3 @@ def angleDifference(v, w):
 
 setHighSpeedDataRate()
 bus.write_byte_data(DEVICE_ADDRESS, REGISTER_CRB_REG_M, 0x20)
-wake()
