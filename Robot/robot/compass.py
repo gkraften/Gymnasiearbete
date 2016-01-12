@@ -1,5 +1,6 @@
 import smbus
 import math
+import time
 
 DEVICE_ADDRESS = 0x1e
 REGISTER_CRA_REG_M = 0x00
@@ -58,6 +59,36 @@ def getHeading():
 def angleDifference(v, w):
     '''Ger skillnaden mellan v och w. Är talet positivt betyder det att v ligger längre motsols än w; är talet negativt ligger v längre medsols än w.'''
     return math.atan2(math.sin(v-w), math.cos(v-w))
+
+def calibrate(duration):
+    global _xoffset
+    global _yoffset
+
+    x = []
+    y = []
+    t = time.time()
+    while time.time() - t < duration:
+        p = readAxisData()
+        x.append(p[0])
+        y.append(p[1])
+        time.sleep(1/220)
+
+    distances = []
+    for i in range(1, len(x)):
+        p1 = (x[i-1], y[i-1])
+        p2 = (x[i], y[i])
+        distances.append(math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2))
+
+    average_distance = sum(distances)/len(distances)
+    for i in range(1, len(x)):
+        p1 = (x[i-1], y[i-1])
+        p2 = (x[i], y[i])
+        if math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2) > average_distance + 20:
+            x.remove(x[i])
+            y.remove(y[i])
+
+    _xoffset += (min(x) + max(x))/2
+    _yoffset += (min(y) + max(y))/2
 
 setHighSpeedDataRate()
 bus.write_byte_data(DEVICE_ADDRESS, REGISTER_CRB_REG_M, 0x20)
