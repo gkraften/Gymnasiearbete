@@ -1,6 +1,7 @@
 import smbus
 import math
 import time
+from robot import motors
 
 DEVICE_ADDRESS = 0x1e
 REGISTER_CRA_REG_M = 0x00
@@ -64,6 +65,8 @@ def calibrate(duration):
     global _xoffset
     global _yoffset
 
+    motors.left()
+
     x = []
     y = []
     t = time.time()
@@ -72,6 +75,8 @@ def calibrate(duration):
         x.append(p[0])
         y.append(p[1])
         time.sleep(1/220)
+
+    motors.stop()
 
     distances = []
     for i in range(1, len(x)):
