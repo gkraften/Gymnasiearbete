@@ -80,15 +80,17 @@ def calibrate(duration):
         distances.append(math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2))
 
     average_distance = sum(distances)/len(distances)
+    new_x = []
+    new_y = []
     for i in range(1, len(x)):
         p1 = (x[i-1], y[i-1])
         p2 = (x[i], y[i])
-        if math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2) > average_distance + 20:
-            x.remove(x[i])
-            y.remove(y[i])
+        if math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2) < average_distance + 20:
+            new_x.append(p2[0])
+            new_y.append(p2[1])
 
-    _xoffset += (min(x) + max(x))/2
-    _yoffset += (min(y) + max(y))/2
+    _xoffset += (min(new_x) + max(new_x))/2
+    _yoffset += (min(new_y) + max(new_y))/2
 
 setHighSpeedDataRate()
 bus.write_byte_data(DEVICE_ADDRESS, REGISTER_CRB_REG_M, 0x20)
