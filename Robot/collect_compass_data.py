@@ -5,6 +5,7 @@ import time
 
 try:
     compass.wake()
+    compass.setHighSpeedDataRate()
     motors.left(100)
     with open("data.csv", "w") as f:
         while True:
