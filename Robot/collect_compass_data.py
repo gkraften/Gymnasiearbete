@@ -4,6 +4,7 @@ import robot
 import time
 
 try:
+    compass.wake()
     motors.left(100)
     with open("data.csv", "w") as f:
         while True:
