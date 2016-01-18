@@ -66,22 +66,18 @@ class _MotorController(Timer):
 
     def run(self):
         dt = time.time() - self.t
-        t_cpy = self.t
         self.t = time.time()
 
-        if t_cpy != 0:
-            now = compass.getHeading()
-            ret = self.pid.update(compass.angleDifference(now, self.last))
-            self.last = now
+        now = compass.getHeading()
+        ret = self.pid.update(compass.angleDifference(now, self.last))
+        self.last = now
 
-            if ret < 0:
-                self.r_speed = 100
-                self.l_speed = 100 + ret
-            if ret > 0:
-                self.r_speed = 100 - ret
-                self.l_speed = 100
-        else:
-            self.last = compass.getHeading()
+        if ret < 0:
+            self.r_speed = 100
+            self.l_speed = 100 + ret
+        if ret > 0:
+            self.r_speed = 100 - ret
+            self.l_speed = 100
 
         if self.drive_forward:
             LEFT.forward(self.l_speed)
@@ -92,6 +88,7 @@ class _MotorController(Timer):
 
     def start(self):
         self.last = compass.getHeading()
+        self.t = time.time()
         super().start()
 
 _CONTROLLER = _MotorController()
