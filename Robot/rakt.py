@@ -9,7 +9,7 @@ import math
 pid = PID(float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), -50, 50)
 pid.set_target(0)
 
-compass.wake()
+compass.calibrate(10)
 motors.LEFT.forward(97.58523148413154)
 motors.RIGHT.forward(100)
 
