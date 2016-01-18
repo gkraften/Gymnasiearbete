@@ -65,6 +65,7 @@ class _MotorController(Timer):
         self.drive_forward = False
 
     def run(self):
+        print("nu")
         dt = time.time() - self.t
         self.t = time.time()
 
