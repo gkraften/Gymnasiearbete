@@ -90,6 +90,10 @@ class _MotorController(Timer):
             LEFT.backward(self.l_speed)
             RIGHT.backward(self.r_speed)
 
+    def start(self):
+        self.last = compass.getHeading()
+        super().start()
+
 _CONTROLLER = _MotorController()
 
 def stop():
