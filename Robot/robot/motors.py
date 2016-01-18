@@ -49,8 +49,8 @@ class _MotorController(Timer):
 
         self.pid = PID(25, 20, 30, -50, 50)
         self.pid.set_target(0)
-        self.forward = False
-        self.backward = False
+        self.drive_forward = False
+        self.drive_backward = False
         self.t = 0
         self.last = 0
         self.r_speed = 100
@@ -81,10 +81,10 @@ class _MotorController(Timer):
                 self.r_speed = 100 - ret
                 self.l_speed = 100
 
-        if self.forward:
+        if self.drive_forward:
             LEFT.forward(self.l_speed)
             RIGHT.forward(self.r_speed)
-        elif self.backward:
+        elif self.drive_backward:
             LEFT.backward(self.l_speed)
             RIGHT.backward(self.r_speed)
 
