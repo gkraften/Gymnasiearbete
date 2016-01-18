@@ -92,7 +92,6 @@ _CONTROLLER = _MotorController()
 
 def stop():
     _CONTROLLER.pause()
-    _CONTROLLER._t.join()
     LEFT.stop()
     RIGHT.stop()
 
