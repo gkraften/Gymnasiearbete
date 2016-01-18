@@ -90,7 +90,7 @@ def calibrate(duration):
     for i in range(1, len(x)):
         p1 = (x[i-1], y[i-1])
         p2 = (x[i], y[i])
-        if math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2) < average_distance + 20:
+        if math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2) < average_distance:
             new_x.append(p2[0])
             new_y.append(p2[1])
 
