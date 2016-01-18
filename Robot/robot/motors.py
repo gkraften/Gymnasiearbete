@@ -57,12 +57,12 @@ class _MotorController(Timer):
         self.l_speed = 100
 
     def forward(self):
-        self.backward = False
-        self.forward = True
+        self.drive_backward = False
+        self.drive_forward = True
 
     def backward(self):
-        self.backward = True
-        self.forward = False
+        self.drive_backward = True
+        self.drive_forward = False
 
     def run(self):
         dt = time.time() - self.t
