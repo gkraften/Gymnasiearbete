@@ -80,6 +80,8 @@ class _MotorController(Timer):
             if ret > 0:
                 self.r_speed = 100 - ret
                 self.l_speed = 100
+        else:
+            self.last = compass.getHeading()
 
         if self.drive_forward:
             LEFT.forward(self.l_speed)
