@@ -6,6 +6,8 @@ import time
 try:
     compass.wake()
     compass.setHighSpeedDataRate()
+    compass.calibrate(10)
+    print("Samlar data...")
     motors.left(100)
     with open("data.csv", "w") as f:
         while True:
