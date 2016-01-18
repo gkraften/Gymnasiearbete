@@ -1,7 +1,6 @@
 import smbus
 import math
 import time
-from robot import motors
 
 DEVICE_ADDRESS = 0x1e
 REGISTER_CRA_REG_M = 0x00
@@ -62,6 +61,7 @@ def angleDifference(v, w):
     return math.atan2(math.sin(v-w), math.cos(v-w))
 
 def calibrate(duration):
+    from robot import motors
     global _xoffset
     global _yoffset
 

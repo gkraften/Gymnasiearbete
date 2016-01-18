@@ -1,6 +1,10 @@
 import RPi.GPIO as GPIO
 import robot.pins as pins
 import robot
+from timer import  Timer
+from controller import PID
+import time
+import robot.compass as compass
 
 class Motor:
     def __init__(self, pin1, pin2):
@@ -39,17 +43,66 @@ class Motor:
 LEFT = Motor(pins.MOTOR_LEFT_1, pins.MOTOR_LEFT_2)
 RIGHT = Motor(pins.MOTOR_RIGHT_1, pins.MOTOR_RIGHT_2)
 
+class _MotorController(Timer):
+    def __init__(self):
+        super().__init__(0.25)
+
+        self.pid = PID(25, 20, 30, -50, 50)
+        self.pid.set_target(0)
+        self.forward = False
+        self.backward = False
+        self.t = 0
+        self.last = 0
+        self.r_speed = 100
+        self.l_speed = 100
+
+    def forward(self):
+        self.backward = False
+        self.forward = True
+
+    def backward(self):
+        self.backward = True
+        self.forward = False
+
+    def run(self):
+        dt = time.time() - self.t
+        t_cpy = self.t
+        self.t = time.time()
+
+        if t_cpy != 0:
+            now = compass.getHeading()
+            ret = self.pid.update(compass.angleDifference(now, self.last))
+            self.last = now
+
+            if ret < 0:
+                self.r_speed = 100
+                self.l_speed = 100 + ret
+            if ret > 0:
+                self.r_speed = 100 - ret
+                self.l_speed = 100
+
+        if self.forward:
+            LEFT.forward(self.l_speed)
+            RIGHT.forward(self.r_speed)
+        elif self.backward:
+            LEFT.backward(self.l_speed)
+            RIGHT.backward(self.r_speed)
+
+_CONTROLLER = _MotorController()
+
 def stop():
+    _CONTROLLER.pause()
+    _CONTROLLER._t.join()
     LEFT.stop()
     RIGHT.stop()
 
 def forward():
-    LEFT.forward(80)
-    RIGHT.forward(100)
+    _CONTROLLER.forward()
+    _CONTROLLER.start()
 
 def backward():
-    LEFT.backward(100)
-    RIGHT.backward(100)
+    _CONTROLLER.backward()
+    _CONTROLLER.start()
 
 def left(speed=100):
     LEFT.backward(speed)
