@@ -21,7 +21,8 @@ robot.compass.calibrate(10)
 input("Tryck på enter för att starta. Tryck på ctrl+C för att stoppa.")
 
 robot.distance.start_measuring(moved)
-robot.motors.forward()
+robot.motors.LEFT.forward()
+robot.motors.RIGHT.forward()
 
 try:
     while True:
@@ -31,3 +32,4 @@ except KeyboardInterrupt:
 finally:
     robot.motors.stop()
     print("Avståndet till origo är {}cm".format(p.length()))
+    robot.clean()
