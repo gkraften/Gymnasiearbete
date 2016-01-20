@@ -4,6 +4,7 @@ import robot.pins as pins
 import time
 import math
 from threading import Thread
+from controller import PID
 
 _battery_callback = None
 _battery_pauses = 0
@@ -59,21 +60,20 @@ def halt():
 import robot.compass as compass
 import robot.motors as motors
 
-def turn_to(heading, error=math.radians(1), speed=80):
-    tries = 0
-    while abs(compass.angleDifference(compass.getHeading(), heading)) > error:
-        tries += 1
-        while abs(compass.angleDifference(compass.getHeading(), heading)) > error:
-            if compass.angleDifference(heading, compass.getHeading()) > 0:
-                motors.left(speed)
-            else:
-                motors.right(speed)
-        motors.stop()
-        time.sleep(1)
-        if tries == 3:
-            tries = 0
-            motors.left(50)
-            time.sleep(1)
+def turn_to(heading, kp, ki, kd, error=math.radians(1)):
+    pid = PID(kp, ki, kd, -50, 50)
+    pid.set_target(heading)
+    pid.difference = compass.angleDifference
+
+    h = compass.getHeading()
+    while abs(compass.angleDifference(h, heading)) > error:
+        ret = pid.update(h)
+        if ret < 0:
+            motors.right(ret)
+        elif ret > 0:
+            motors.left(ret)
+        h = compass.getHeading()
+        time.sleep(0.1)
 
 def clean():
     GPIO.cleanup()
