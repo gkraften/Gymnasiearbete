@@ -10,11 +10,13 @@ class PID:
         self.integral = 0
         self.last_error = 0
 
+        self.difference = lambda a, b: a-b
+
     def set_target(self, target):
         self.target = target
 
     def update(self, val, dt=1):
-        error = self.target - val
+        error = self.difference(self.target, val)
 
         self.integral += error * dt
 
