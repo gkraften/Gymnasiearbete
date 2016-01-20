@@ -8,6 +8,7 @@ import math
 
 pid = PID(float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), -50, 50)
 pid.set_target(math.pi/2)
+pid.difference = compass.angleDifference
 
 compass.calibrate(10)
 motors.LEFT.forward(97.58523148413154)
@@ -17,15 +18,12 @@ try:
     l_speed = 100
     r_speed = 100
     last = time.time()
-    last_direction = compass.getHeading()
     while True:
         dt = time.time() - last
         last = time.time()
 
         direction = compass.getHeading()
         ret = pid.update(direction, dt)
-        print(math.degrees(compass.angleDifference(last_direction, direction)))
-        last_direction = direction
 
         if ret < 0:
             r_speed = 100
