@@ -21,6 +21,6 @@ try:
         direction = compass.getHeading()
         if abs(compass.angleDifference(direction, last)) > 5:
             break
-except:
+finally:
     motors.stop()
     robot.clean()
