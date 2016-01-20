@@ -21,7 +21,7 @@ try:
     while True:
         direction = compass.getHeading()
         print(math.degrees(abs(compass.angleDifference(direction, last))))
-        if math.degrees(abs(compass.angleDifference(direction, last))) > 5:
+        if math.degrees(abs(compass.angleDifference(direction, last))) > 5 and False:
             break
         last = direction
         time.sleep(0.1)
