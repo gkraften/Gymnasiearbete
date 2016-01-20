@@ -41,7 +41,7 @@ def readAxisData():
     global _last
     global _last_value
 
-    if time.time() - _last < 0.005:
+    while time.time() - _last < 0.005:
         return _last_value
     _last = time.time()
 
@@ -54,8 +54,10 @@ def readAxisData():
 
     x = _twos_comp(((xh & 0xff)<<8) | xl, 16) - _xoffset
     y = _twos_comp(((yh & 0xff)<<8) | yl, 16) - _yoffset
+    z = _twos_comp(((zh & 0xff)<<8) | zl, 16)
 
     _last_value = (x, y, z)
+
     return (x, y, z)
 
 def getHeading():
