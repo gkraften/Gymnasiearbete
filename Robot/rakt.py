@@ -11,7 +11,10 @@ pid.set_target(math.pi/2)
 pid.difference = compass.angleDifference
 
 compass.calibrate(10)
-motors.LEFT.forward(97.58523148413154)
+
+input("Tryck på enter")
+
+motors.LEFT.forward(100)
 motors.RIGHT.forward(100)
 
 try:
