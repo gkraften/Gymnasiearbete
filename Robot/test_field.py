@@ -11,7 +11,6 @@ def battery_low():
 
 robot.on_battery_low(battery_low)
 
-compass.setHighSpeedDataRate()
 compass.calibrate(10)
 
 input("Tryck på enter för att starta")
