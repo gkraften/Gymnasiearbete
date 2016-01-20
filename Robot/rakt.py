@@ -6,6 +6,13 @@ from controller import PID
 import sys
 import math
 
+def battery_low():
+    print("Lågt batteri!")
+    robot.clean()
+    robot.halt()
+
+robot.on_battery_low(battery_low)
+
 pid = PID(float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3]), -50, 50)
 pid.set_target(math.pi/2)
 pid.difference = compass.angleDifference
