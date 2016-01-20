@@ -24,7 +24,7 @@ try:
         if math.degrees(abs(compass.angleDifference(direction, last))) > 5 and False:
             break
         last = direction
-        time.sleep(0.1)
+        time.sleep(1)
 finally:
     motors.stop()
     robot.clean()
