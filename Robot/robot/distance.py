@@ -3,50 +3,26 @@ import robot.pins as pins
 from threading import Thread
 import time
 
-GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
-GPIO.add_event_detect(pins.HALL_EFFECT, GPIO.FALLING, bouncetime=250)
-
 _measuring = False
 _d = 0
 _thread = None
 
 HALF_CIRCUMFERENCE = 10.21
 
-def _measure(callback):
+GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
+
+def start_measuring(callback):
+    global _measuring
     global _d
-    global _measuring
-    last = 0
-    while _measuring:
-        if GPIO.event_detected(pins.HALL_EFFECT):
-            _d += 1
-            if not callback is None:
-                callback()
-        #try:
-        #if GPIO.input(pins.HALL_EFFECT) == 0:
-        #    dt = time.time() - last
-        #    if dt > 0.25:
-        #        last = time.time()
-        #        _d += HALF_CIRCUMFERENCE
-        #        if not callback is None:
-        #            callback()
-        #except RuntimeError:
-        #    break
-
-
-def start_measuring(callback=None):
-    global _measuring
-    global _thread
     if not _measuring:
         _measuring = True
         _d = 0
-        _thread = Thread(target=_measure, args=(callback,))
-        _thread.start()
+        GPIO.add_event_detect(pins.HALL_EFFECT, GPIO.FALLING, callback=lambda c: callback(), bouncetime=250)
 
 def stop_measuring():
     global _measuring
-    global _thread
     _measuring = False
-    _thread.join()
+    GPIO.remove_event_detect(pins.HALL_EFFECT)
 
 def get_distance():
     return _d
