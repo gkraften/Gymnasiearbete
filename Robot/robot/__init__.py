@@ -73,7 +73,7 @@ def turn_to(heading, kp, ki, kd, error=math.radians(1)):
         elif ret > 0:
             motors.left(50+ret)
         h = compass.getHeading()
-        time.sleep(0.1)
+        time.sleep(0.05)
     motors.stop()
 
 def clean():
