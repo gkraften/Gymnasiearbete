@@ -17,7 +17,6 @@ class PID:
 
     def update(self, val, dt=1):
         error = self.difference(self.target, val)
-        print(error)
 
         self.integral += error * dt
 

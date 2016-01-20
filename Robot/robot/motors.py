@@ -71,6 +71,7 @@ class _MotorController(Timer):
 
         direction = compass.getHeading()
         ret = self.pid.update(direction, dt)
+        print(ret)
 
         if ret < 0:
             r_speed = 100 + ret
