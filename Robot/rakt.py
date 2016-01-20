@@ -29,11 +29,11 @@ try:
         ret = pid.update(direction, dt)
 
         if ret < 0:
-            r_speed = 100
-            l_speed = 100 + ret
-        if ret > 0:
-            r_speed = 100 - ret
+            r_speed = 100 + ret
             l_speed = 100
+        if ret > 0:
+            r_speed = 100
+            l_speed = 100 - ret
 
         motors.LEFT.forward(l_speed)
         motors.RIGHT.forward(r_speed)
