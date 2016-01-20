@@ -46,6 +46,7 @@ def readAxisData():
 
     while time.time() - _last < 0.005:
         pass
+    _last = time.time()
 
     xl = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_X_L_M)
     xh = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_X_H_M)
