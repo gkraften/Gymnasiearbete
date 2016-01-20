@@ -52,6 +52,7 @@ while True:
         if cmd == "q":
             print("Vänster: {}%\tHöger: {}%".format(l_speed, r_speed))
             break
+        last = time.time()
     except:
         motors.stop()
         break
