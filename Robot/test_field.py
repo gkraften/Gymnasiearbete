@@ -19,7 +19,7 @@ try:
     motors.forward()
     last = compass.getHeading()
     while True:
-        direction = compass.getHeading()
+        direction = 0#compass.getHeading()
         print(math.degrees(abs(compass.angleDifference(direction, last))))
         if math.degrees(abs(compass.angleDifference(direction, last))) > 5 and False:
             break
