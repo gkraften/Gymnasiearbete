@@ -5,6 +5,7 @@ from timer import  Timer
 from controller import PID
 import time
 import robot.compass as compass
+import math
 
 class Motor:
     def __init__(self, pin1, pin2):
@@ -65,7 +66,7 @@ class _MotorController(Timer):
         self.drive_forward = False
 
     def run(self):
-        print("{}°\t{}%\t{}%".format(self.last, self.l_speed, self.r_speed))
+        print("{}°\t{}%\t{}%".format(math.degrees(self.last), self.l_speed, self.r_speed))
         dt = time.time() - self.t
         self.t = time.time()
 
