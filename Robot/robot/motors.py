@@ -71,7 +71,7 @@ class _MotorController(Timer):
         self.t = time.time()
 
         now = compass.getHeading()
-        ret = self.pid.update(compass.angleDifference(now, self.last))
+        ret = self.pid.update(compass.angleDifference(self.last, now), dt)
         self.last = now
 
         if ret < 0:
