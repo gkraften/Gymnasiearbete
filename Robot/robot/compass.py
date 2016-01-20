@@ -1,7 +1,6 @@
 import smbus
 import math
 import time
-from threading import Lock
 
 DEVICE_ADDRESS = 0x1e
 REGISTER_CRA_REG_M = 0x00
@@ -17,7 +16,7 @@ REGISTER_OUT_Y_H_M = 0x07
 _xoffset = 0
 _yoffset = 0
 _last = 0
-_lock = Lock()
+_last_value = 0
 
 bus = smbus.SMBus(1)
 
@@ -40,12 +39,10 @@ def setNormalSpeedDataRate():
 
 def readAxisData():
     global _last
-    global _lock
+    global _last_value
 
-    _lock.acquire()
-
-    while time.time() - _last < 0.005:
-        pass
+    if time.time() - _last < 0.005:
+        return _last_value
     _last = time.time()
 
     xl = bus.read_byte_data(DEVICE_ADDRESS, REGISTER_OUT_X_L_M)
@@ -57,10 +54,8 @@ def readAxisData():
 
     x = _twos_comp(((xh & 0xff)<<8) | xl, 16) - _xoffset
     y = _twos_comp(((yh & 0xff)<<8) | yl, 16) - _yoffset
-    z = _twos_comp(((zh & 0xff)<<8) | zl, 16)
 
-    _lock.release()
-
+    _last_value = (x, y, z)
     return (x, y, z)
 
 def getHeading():
