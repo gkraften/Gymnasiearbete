@@ -1,6 +1,7 @@
 import robot
 from robot import motors
 from robot import compass
+import time
 
 def battery_low():
     print("Lågt batteri! Stänger av...")
@@ -14,9 +15,12 @@ compass.calibrate(10)
 input("Tryck på enter för att starta")
 
 try:
-    motors.backward()
+    motors.forward()
+    last = compass.getHeading()
     while True:
-        pass
+        direction = compass.getHeading()
+        if abs(compass.angleDifference(direction, last)) > 5:
+            break
 except:
     motors.stop()
     robot.clean()
