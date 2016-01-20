@@ -74,6 +74,7 @@ def turn_to(heading, kp, ki, kd, error=math.radians(1)):
             motors.left(ret)
         h = compass.getHeading()
         time.sleep(0.1)
+    motors.stop()
 
 def clean():
     GPIO.cleanup()
