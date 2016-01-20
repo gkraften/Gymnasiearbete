@@ -66,12 +66,12 @@ class _MotorController(Timer):
         self.drive_forward = False
 
     def run(self):
-        print("{}°\t{}%\t{}%".format(math.degrees(self.last), self.l_speed, self.r_speed))
         dt = time.time() - self.t
         self.t = time.time()
 
         now = compass.getHeading()
         ret = self.pid.update(compass.angleDifference(self.last, now), dt)
+        print(math.degrees(compass.angleDifference(self.last, now)))
         self.last = now
 
         if ret < 0:
