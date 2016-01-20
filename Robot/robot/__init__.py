@@ -66,7 +66,7 @@ def turn_to(heading, kp, ki, kd, error=math.radians(1)):
     pid.difference = compass.angleDifference
 
     h = compass.getHeading()
-    while abs(compass.angleDifference(h, heading)) > error:
+    while abs(compass.angleDifference(h, heading)) > error || True:
         ret = pid.update(h)
         print(ret)
         if ret < 0:
