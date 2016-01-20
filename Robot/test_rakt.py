@@ -14,7 +14,7 @@ compass.calibrate(10)
 input("Tryck på enter för att starta")
 
 try:
-    motors.forward()
+    motors.backward()
     while True:
         pass
 except:
