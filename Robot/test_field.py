@@ -2,6 +2,7 @@ import robot
 from robot import motors
 from robot import compass
 import math
+import time
 
 def battery_low():
     print("Lågt batteri! Stänger av...")
@@ -19,8 +20,11 @@ try:
     last = compass.getHeading()
     while True:
         direction = compass.getHeading()
+        print(math.degrees(abs(compass.angleDifference(direction, last))))
         if math.degrees(abs(compass.angleDifference(direction, last))) > 5:
             break
+        last = direction
+        time.sleep(0.1)
 finally:
     motors.stop()
     robot.clean()
