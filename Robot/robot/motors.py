@@ -71,14 +71,13 @@ class _MotorController(Timer):
 
         direction = compass.getHeading()
         ret = self.pid.update(direction, dt)
-        print(ret)
 
         if ret < 0:
-            r_speed = 100 + ret
-            l_speed = 100
+            self.r_speed = 100 + ret
+            self.l_speed = 100
         if ret > 0:
-            r_speed = 100
-            l_speed = 100 - ret
+            self.r_speed = 100
+            self.l_speed = 100 - ret
 
         if self.drive_forward:
             LEFT.forward(self.l_speed)
