@@ -24,11 +24,11 @@ input("Tryck på enter")
 motors.LEFT.forward(100)
 motors.RIGHT.forward(100)
 
-try:
-    l_speed = 100
-    r_speed = 100
-    last = time.time()
-    while True:
+l_speed = 100
+r_speed = 100
+last = time.time()
+while True:
+    try:
         dt = time.time() - last
         last = time.time()
 
@@ -46,8 +46,13 @@ try:
         motors.RIGHT.forward(r_speed)
 
         time.sleep(0.25)
-except KeyboardInterrupt:
-    print("Vänster: {}%\tHöger: {}%".format(l_speed, r_speed))
-finally:
-    compass.sleep()
-    robot.clean()
+    except KeyboardInterrupt:
+        cmd = input("Skriv q för att avsluta, tryck endast på enter för att fortsätta")
+        if cmd == "q":
+            motors.stop()
+            print("Vänster: {}%\tHöger: {}%".format(l_speed, r_speed))
+            break
+    except:
+        motors.stop()
+        break
+robot.clean()
