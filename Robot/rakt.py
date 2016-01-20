@@ -47,9 +47,9 @@ while True:
 
         time.sleep(0.25)
     except KeyboardInterrupt:
+        motors.stop()
         cmd = input("Skriv q för att avsluta, tryck endast på enter för att fortsätta")
         if cmd == "q":
-            motors.stop()
             print("Vänster: {}%\tHöger: {}%".format(l_speed, r_speed))
             break
     except:
