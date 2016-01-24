@@ -72,14 +72,15 @@ def turn_to(heading, error=math.radians(1)):
             motors.right(50-ret)
         elif ret > 0:
             motors.left(50+ret)
-        h = compass.getHeading()
-        time.sleep(0.05)
 
         if abs(compass.angleDifference(h, heading)) <= error:
             motors.stop()
             time.sleep(0.5)
-            if abs(compass.angleDifference(h, heading)) <= error:
+            if abs(compass.angleDifference(compass.getHeading(), heading)) <= error:
                 break
+
+        h = compass.getHeading()
+        time.sleep(0.05)
 
 def clean():
     GPIO.cleanup()
