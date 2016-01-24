@@ -78,6 +78,8 @@ def turn_to(heading, error=math.radians(1)):
             time.sleep(0.5)
             if abs(compass.angleDifference(compass.getHeading(), heading)) <= error:
                 break
+            else:
+                pid.integral = 0
 
         h = compass.getHeading()
         time.sleep(0.05)
