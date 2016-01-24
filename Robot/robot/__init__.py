@@ -66,16 +66,20 @@ def turn_to(heading, error=math.radians(1)):
     pid.difference = compass.angleDifference
 
     h = compass.getHeading()
-    while abs(compass.angleDifference(h, heading)) > error:
+    while True:
         ret = pid.update(h)
-        print(ret)
         if ret < 0:
             motors.right(50-ret)
         elif ret > 0:
             motors.left(50+ret)
         h = compass.getHeading()
         time.sleep(0.05)
-    motors.stop()
+
+        if abs(compass.angleDifference(h, heading)) <= error:
+            motors.stop()
+            time.sleep(0.5)
+            if abs(compass.angleDifference(h, heading)) <= error:
+                break
 
 def clean():
     GPIO.cleanup()
