@@ -61,12 +61,12 @@ import robot.compass as compass
 import robot.motors as motors
 
 def turn_to(heading, kp, ki, kd, error=math.radians(1)):
-    pid = PID(kp, ki, kd, -50, 50)
+    pid = PID(3, 0.1, 5, -50, 50)
     pid.set_target(heading)
     pid.difference = compass.angleDifference
 
     h = compass.getHeading()
-    while abs(compass.angleDifference(h, heading)) > error or True:
+    while abs(compass.angleDifference(h, heading)) > error:
         ret = pid.update(h)
         print(ret)
         if ret < 0:
