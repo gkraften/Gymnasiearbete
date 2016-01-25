@@ -26,7 +26,7 @@ def start_measuring(callback):
     if not _measuring:
         _measuring = True
         _d = 0
-        Thread(target=_measure, args=(callback)).start()
+        Thread(target=_measure, args=(callback,)).start()
 
 def stop_measuring():
     global _measuring
