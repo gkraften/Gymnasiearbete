@@ -16,6 +16,7 @@ def avsluta():
     robot.halt()
 
 try:
+    robot.on_battery_low(avsluta)
     compass.calibrate(5)
     robot.turn_to(math.pi/2, math.radians(4))
     input("Enter")
