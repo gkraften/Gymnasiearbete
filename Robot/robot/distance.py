@@ -16,12 +16,23 @@ def _measure():
     global _measuring
     global _callback
     last = []
+    for i in range(100):
+        last.append(1)
     while _measuring:
         now = GPIO.input(pins.HALL_EFFECT)
-        last.append(now)
-        if now == 0:
+
+        all_ones = True
+        for i in last:
+            if i == 0:
+                all_ones = False
+                break
+
+        if now == 0 and all_ones:
             _callback()
-    print(last)
+
+        for i in range(99, 0):
+            last[i] = last[i - 1]
+        last[0] = now
 
 def start_measuring(callback):
     global _measuring
