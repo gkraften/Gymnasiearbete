@@ -21,14 +21,14 @@ def _measure():
     while _measuring:
         now = GPIO.input(pins.HALL_EFFECT)
 
-        all_ones = True
-        for i in last:
-            if i == 0:
-                all_ones = False
-                break
-
-        if now == 0 and all_ones:
-            _callback()
+        if now == 0:
+            all_ones = True
+            for i in last:
+                if i == 0:
+                    all_ones = False
+                    break
+            if all_ones:
+                _callback()
 
         for i in range(99, 0):
             last[i] = last[i - 1]
