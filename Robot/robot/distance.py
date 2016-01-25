@@ -27,6 +27,7 @@ def _measure():
         for i in range(14, 0):
             last[i] = last[i - 1]
         last[0] = now
+        time.sleep(0.01)
 
 def start_measuring(callback):
     global _measuring
