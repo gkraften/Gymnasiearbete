@@ -15,12 +15,14 @@ GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
 def _measure():
     global _measuring
     global _callback
-    last = 1
+    three_last = [1, 1, 1]
     while _measuring:
         now = GPIO.input(pins.HALL_EFFECT)
-        if now == 0 and last == 1:
+        if now == 0 and three_last[0] == 1 and three_last[1] == 1 and three_last[2] == 1:
             _callback()
-        last = now
+        three_last[2] = three_last[1]
+        three_last[1] = three_last[0]
+        three_last[0] = now
 
 def start_measuring(callback):
     global _measuring
