@@ -19,7 +19,7 @@ def _measure():
     while _measuring:
         now = GPIO.input(pins.HALL_EFFECT)
         if now == 0 and last == 1:
-            callback()
+            _callback()
         last = now
 
 def start_measuring(callback):
