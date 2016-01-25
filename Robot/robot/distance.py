@@ -25,6 +25,7 @@ def _measure():
 def start_measuring(callback):
     global _measuring
     global _d
+    global _callback
     if not _measuring:
         _measuring = True
         _d = 0
