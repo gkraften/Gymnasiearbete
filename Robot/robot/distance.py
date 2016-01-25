@@ -22,7 +22,6 @@ def _measure():
         now = GPIO.input(pins.HALL_EFFECT)
 
         if now == 0 and sum(last) == 15:
-            print(sum(last))
             _callback()
 
         for i in range(14, 0):
