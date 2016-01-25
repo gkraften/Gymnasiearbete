@@ -98,13 +98,13 @@ def stop():
     LEFT.stop()
     RIGHT.stop()
 
-def forward():
-    _CONTROLLER.pid.set_target(compass.getHeading())
+def forward(direction=None):
+    _CONTROLLER.pid.set_target(compass.getHeading() if direction is None else direction)
     _CONTROLLER.forward()
     _CONTROLLER.start()
 
-def backward():
-    _CONTROLLER.pid.set_target(compass.getHeading())
+def backward(direction=None):
+    _CONTROLLER.pid.set_target(compass.getHeading() if direction is None else direction)
     _CONTROLLER.backward()
     _CONTROLLER.start()
 
