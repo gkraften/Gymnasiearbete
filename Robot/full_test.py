@@ -10,6 +10,11 @@ def count():
     global n
     n += 1
 
+def avsluta():
+    print("Batteriet är slut!")
+    robot.clean()
+    robot.halt()
+
 try:
     compass.calibrate(5)
     robot.turn_to(math.pi/2, math.radians(4))
