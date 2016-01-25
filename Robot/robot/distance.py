@@ -12,7 +12,7 @@ HALF_CIRCUMFERENCE = 10.21
 
 GPIO.setup(pins.HALL_EFFECT, GPIO.IN)
 
-def _measure(callback):
+def _measure():
     global _measuring
     global _callback
     last = 1
