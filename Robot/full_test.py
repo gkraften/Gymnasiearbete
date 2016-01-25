@@ -21,7 +21,7 @@ try:
     distance.stop_measuring()
     print("Antal halva varv: {}".format(n))
     robot.turn_to(3*math.pi/2, math.radians(4))
-    robot.forward(3*math.pi/2)
+    motors.forward(3*math.pi/2)
     input("Tryck på enter för att stanna")
 finally:
     motors.stop()
