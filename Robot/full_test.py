@@ -13,6 +13,7 @@ def count():
 try:
     compass.calibrate(5)
     robot.turn_to(math.pi/2)
+    input("Enter")
     distance.start_measuring(count)
     motors.forward(math.pi/2)
     input("Tryck på enter")
