@@ -16,16 +16,16 @@ def _measure():
     global _measuring
     global _callback
     last = []
-    for i in range(100):
+    for i in range(15):
         last.append(1)
     while _measuring:
         now = GPIO.input(pins.HALL_EFFECT)
 
-        if now == 0 and sum(last) == 100:
+        if now == 0 and sum(last) == 15:
             print("Lägger till")
             _callback()
 
-        for i in range(99, 0):
+        for i in range(14, 0):
             last[i] = last[i - 1]
         last[0] = now
 
