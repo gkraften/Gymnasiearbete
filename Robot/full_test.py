@@ -7,8 +7,8 @@ import math
 n = 0
 
 def count():
-    global d
-    d += 1
+    global n
+    n += 1
 
 try:
     compass.calibrate(5)
