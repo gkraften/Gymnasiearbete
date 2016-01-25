@@ -13,8 +13,6 @@ try:
         robot.turn_to(3*math.pi/2)
         motors.forward()
         input("VÄND FÖR I HELVETE!!!")
-except KeyboardInterrupt:
-    pass
 finally:
     motors.stop()
     robot.clean()
