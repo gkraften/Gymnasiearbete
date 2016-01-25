@@ -99,7 +99,6 @@ def stop():
     RIGHT.stop()
 
 def forward():
-    global _CONTROLLER
     _CONTROLLER.pid.set_target(compass.getHeading())
     _CONTROLLER.forward()
     _CONTROLLER.start()
