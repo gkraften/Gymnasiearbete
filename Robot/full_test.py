@@ -7,11 +7,11 @@ try:
     compass.calibrate(5)
     while True:
         robot.turn_to(math.pi / 2, math.radians(4))
-        motors.forward(math.pi / 2, math.radians(4))
+        motors.forward(math.pi / 2)
         input("Du är fett ful")
         motors.stop()
         robot.turn_to(3*math.pi/2, math.radians(4))
-        motors.forward(3*math.pi/2, math.radians(4))
+        motors.forward(3*math.pi/2)
         input("VÄND FÖR I HELVETE!!!")
         motors.stop()
 finally:
