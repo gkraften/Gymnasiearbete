@@ -19,4 +19,5 @@ try:
 except KeyboardInterrupt:
     pass
 finally:
+    motors.stop()
     robot.clean()
