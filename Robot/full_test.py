@@ -3,12 +3,13 @@ from robot import motors
 from robot import distance
 import robot
 import math
+import vector
 
-n = 0
+n = vector.Vector(0, 0)
 
 def count():
     global n
-    n += 1
+    n += vector.from_polar(distance.HALF_CIRCUMFERENCE, compass.getHeading())
 
 def avsluta():
     print("Batteriet är slut!")
@@ -25,7 +26,7 @@ try:
     input("Tryck på enter")
     motors.stop()
     distance.stop_measuring()
-    print("Antal halva varv: {}".format(n))
+    print("Avstånd: {}".format(n.length()))
     robot.turn_to(3*math.pi/2, math.radians(4))
     motors.forward(3*math.pi/2)
     input("Tryck på enter för att stanna")
