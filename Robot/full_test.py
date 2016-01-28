@@ -35,11 +35,12 @@ try:
     time.sleep(3)
     motors.stop()
     distance.stop_measuring()
+    compass.calibrate(5)
 
     robot.turn_to(math.pi, math.radians(4))
     distance.start_measuring(count)
     motors.forward(math.pi)
-    time.sleep(6)
+    time.sleep(3)
     motors.stop()
     distance.stop_measuring()
 
