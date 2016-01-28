@@ -15,7 +15,7 @@ try:
     compass.calibrate(5)
     motors.left(60)
     t = time.time()
-    while time.time() - t < 5:
+    while time.time() - t < 10:
         u = vector.from_polar(range.MIDDLE.distance(), compass.getHeading())
         print("{},{}".format(u.x, u.y), file=f)
 
@@ -25,7 +25,7 @@ try:
         w = vector.from_polar(range.RIGHT.distance(), compass.angleDifference(compass.getHeading(), math.pi/4))
         print("{},{}".format(w.x, w.y), file=f)
 
-        time.sleep(0.1)
+        time.sleep(0.05)
 finally:
     motors.stop()
     robot.clean()
