@@ -1,6 +1,7 @@
 import robot.pins as pins
 import RPi.GPIO as GPIO
 import time
+import vector
 
 class Rangefinder:
     def __init__(self, trig, echo):
@@ -26,6 +27,15 @@ class Rangefinder:
 
         return (stop - start) * 17150
 
-LEFT = Rangefinder(pins.DISTANCE_LEFT_TRIG, pins.DISTANCE_LEFT_ECHO)
-MIDDLE = Rangefinder(pins.DISTANCE_MID_TRIG, pins.DISTANCE_MID_ECHO)
-RIGHT = Rangefinder(pins.DISTANCE_RIGHT_TRIG, pins.DISTANCE_RIGHT_ECHO)
+_LEFT = Rangefinder(pins.DISTANCE_LEFT_TRIG, pins.DISTANCE_LEFT_ECHO)
+_MIDDLE = Rangefinder(pins.DISTANCE_MID_TRIG, pins.DISTANCE_MID_ECHO)
+_RIGHT = Rangefinder(pins.DISTANCE_RIGHT_TRIG, pins.DISTANCE_RIGHT_ECHO)
+
+def get_middle():
+    _MIDDLE.distance() + 14
+
+def get_rigth():
+    _RIGHT.distance() + 14
+
+def get_left():
+    _LEFT.distance() +  14
