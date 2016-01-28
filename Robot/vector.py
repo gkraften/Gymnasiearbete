@@ -13,7 +13,7 @@ class Vector:
         return self.x**2 + self.y**2
 
     def angle(self):
-        return math.atan2(self.x, self.y)
+        return math.atan2(self.y, self.x)
 
     def to_polar(self):
         return (self.length(), self.angle())
