@@ -6,7 +6,7 @@ import vector
 import time
 import math
 
-f = open("map.txt", "w")
+f = open("/var/www/map.txt", "w")
 
 try:
     compass.calibrate(5)
