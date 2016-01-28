@@ -21,6 +21,7 @@ def avsluta():
 
 robot.on_battery_low(avsluta)
 compass.calibrate(5)
+print(math.degrees(l.direction.angle()))
 robot.turn_to(l.direction.angle())
 input("Tryck på enter ")
 
