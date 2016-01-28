@@ -19,10 +19,10 @@ try:
         u = vector.from_polar(ultrasonic.get_middle(), compass.getHeading())
         print("{},{}".format(u.x, u.y), file=f)
 
-        v = vector.from_polar(ultrasonic.get_left(), compass.angleDifference(compass.getHeading(), -math.pi/4))
-        print("{},{}".format(v.x, v.y), file=f)
+        v = vector.from_polar(ultrasonic.get_left(), compass.angleDifference(compass.getHeading(), -math.radians(30)))
+        print("{},{}".format(v.x, v.y), file=f)30°
 
-        w = vector.from_polar(ultrasonic.get_right(), compass.angleDifference(compass.getHeading(), math.pi/4))
+        w = vector.from_polar(ultrasonic.get_right(), compass.angleDifference(compass.getHeading(), math.radians(30)))
         print("{},{}".format(w.x, w.y), file=f)
 
         time.sleep(0.05)
