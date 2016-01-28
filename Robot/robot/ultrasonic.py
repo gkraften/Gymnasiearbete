@@ -34,7 +34,7 @@ _RIGHT = Rangefinder(pins.DISTANCE_RIGHT_TRIG, pins.DISTANCE_RIGHT_ECHO)
 def get_middle():
     return _MIDDLE.distance() + 14
 
-def get_rigth():
+def get_right():
     return _RIGHT.distance() + 14
 
 def get_left():
