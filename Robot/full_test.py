@@ -28,7 +28,7 @@ try:
     motors.stop()
     distance.stop_measuring()
     robot.turn_to(0)
-    distance.start_measuring()
+    distance.start_measuring(count)
     motors.forward()
     time.sleep(1)
     motors.stop()
