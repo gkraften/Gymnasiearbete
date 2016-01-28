@@ -22,17 +22,27 @@ try:
     compass.calibrate(5)
     robot.turn_to(math.pi/2, math.radians(4))
     input("Enter")
+
     distance.start_measuring(count)
     motors.forward(math.pi/2)
     time.sleep(6)
     motors.stop()
     distance.stop_measuring()
+
     robot.turn_to(0, math.radians(4))
     distance.start_measuring(count)
     motors.forward(0)
     time.sleep(3)
     motors.stop()
     distance.stop_measuring()
+
+    robot.turn_to(math.pi, math.radians(4))
+    distance.start_measuring(count)
+    motors.forward(math.pi)
+    time.sleep(6)
+    motors.stop()
+    distance.stop_measuring()
+
     print("{}cm".format(n.length()))
 finally:
     motors.stop()
