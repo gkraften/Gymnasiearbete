@@ -32,10 +32,10 @@ _MIDDLE = Rangefinder(pins.DISTANCE_MID_TRIG, pins.DISTANCE_MID_ECHO)
 _RIGHT = Rangefinder(pins.DISTANCE_RIGHT_TRIG, pins.DISTANCE_RIGHT_ECHO)
 
 def get_middle():
-    _MIDDLE.distance() + 14
+    return _MIDDLE.distance() + 14
 
 def get_rigth():
-    _RIGHT.distance() + 14
+    return _RIGHT.distance() + 14
 
 def get_left():
-    _LEFT.distance() +  14
+    return _LEFT.distance() +  14
