@@ -10,7 +10,7 @@ f = open("map.txt", "w")
 
 try:
     compass.calibrate(5)
-    motors.left(70)
+    motors.left(60)
     while True:
         u = vector.from_polar(range.MIDDLE.distance(), compass.getHeading())
         print("{},{}".format(u.x, u.y), file=f)
