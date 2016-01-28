@@ -13,15 +13,6 @@ def count():
     global n
     n += vector.from_polar(distance.HALF_CIRCUMFERENCE, compass.getHeading())
 
-def magnetic_field():
-    global testa
-    last = compass.getHeading()
-    while testa:
-        now = compass.getHeading()
-        dtheta = abs(compass.angleDifference(now, last))
-        if dtheta > 10 and motors.current_direction == motors.DIRECTION_FORWARD:
-
-
 def avsluta():
     print("Batteriet är slut!")
     robot.clean()
