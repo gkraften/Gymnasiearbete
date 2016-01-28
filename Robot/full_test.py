@@ -4,6 +4,7 @@ from robot import distance
 import robot
 import math
 import vector
+import time
 
 n = vector.Vector(0, 0)
 
@@ -23,10 +24,16 @@ try:
     input("Enter")
     distance.start_measuring(count)
     motors.forward(math.pi/2)
-    input("Tryck på enter")
+    time.sleep(3)
     motors.stop()
     distance.stop_measuring()
-    print("Avstånd: {}".format(n.length()))
+    robot.turn_to(0)
+    distance.start_measuring()
+    motors.forward()
+    time.sleep(1)
+    motors.stop()
+    distance.stop_measuring()
+    print("{}cm".format(n.length()))
 finally:
     motors.stop()
     robot.clean()
