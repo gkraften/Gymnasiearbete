@@ -5,6 +5,9 @@ import robot
 import vector
 import time
 import math
+from subprocess import call
+
+call(["service", "apache2", "start"])
 
 f = open("/var/www/map.txt", "w")
 
