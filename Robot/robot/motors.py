@@ -7,6 +7,12 @@ import time
 import robot.compass as compass
 import math
 
+DIRECTION_LEFT = 0
+DIRECTION_RIGHT = 1
+DIRECTION_FORWARD = 2
+DIRECTION_BACKWARD = 3
+current_direction = None
+
 class Motor:
     def __init__(self, pin1, pin2):
         GPIO.setup(pin1, GPIO.OUT, initial=False)
@@ -97,21 +103,26 @@ def stop():
     _CONTROLLER.pause()
     LEFT.stop()
     RIGHT.stop()
+    current_direction = None
 
 def forward(direction=None):
     _CONTROLLER.pid.set_target(compass.getHeading() if direction is None else direction)
     _CONTROLLER.forward()
     _CONTROLLER.start()
+    current_direction = DIRECTION_FORWARD
 
 def backward(direction=None):
     _CONTROLLER.pid.set_target(compass.getHeading() if direction is None else direction)
     _CONTROLLER.backward()
     _CONTROLLER.start()
+    current_direction = DIRECTION_BACKWARD
 
 def left(speed=100):
     LEFT.backward(speed)
     RIGHT.forward(speed)
+    current_direction = DIRECTION_LEFT
 
 def right(speed=100):
     LEFT.forward(speed)
     RIGHT.backward(speed)
+    current_direction = DIRECTION_RIGHT
