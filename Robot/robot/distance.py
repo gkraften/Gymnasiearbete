@@ -33,15 +33,19 @@ def start_measuring(callback):
     global _measuring
     global _d
     global _callback
+    global _thread
     if not _measuring:
         _measuring = True
         _d = 0
         _callback = callback
-        Thread(target=_measure).start()
+        _thread = Thread(target=_measure)
+        _thread.start()
 
 def stop_measuring():
     global _measuring
+    global _thread
     _measuring = False
+    _thread.join()
 
 def get_distance():
     return _d
