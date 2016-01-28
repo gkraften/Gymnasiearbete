@@ -7,7 +7,6 @@ import vector
 import time
 
 n = vector.Vector(0, 0)
-testa = True
 
 def count():
     global n
@@ -33,7 +32,7 @@ try:
         dtheta = abs(compass.angleDifference(now, last))
         if dtheta > 10:
             compass.calibrate(5)
-        time.sleep(0.1)
+        time.sleep(1)
     motors.stop()
     distance.stop_measuring()
 
@@ -47,7 +46,7 @@ try:
         dtheta = abs(compass.angleDifference(now, last))
         if dtheta > 10:
             compass.calibrate(5)
-        time.sleep(0.1)
+        time.sleep(1)
     motors.stop()
     distance.stop_measuring()
     compass.calibrate(5)
@@ -62,7 +61,7 @@ try:
         dtheta = abs(compass.angleDifference(now, last))
         if dtheta > 10:
             compass.calibrate(5)
-        time.sleep(0.1)
+        time.sleep(1)
     motors.stop()
     distance.stop_measuring()
 
