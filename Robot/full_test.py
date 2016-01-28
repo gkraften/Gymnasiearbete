@@ -29,7 +29,7 @@ try:
     distance.stop_measuring()
     robot.turn_to(0, math.radians(4))
     distance.start_measuring(count)
-    motors.forward()
+    motors.forward(0)
     time.sleep(3)
     motors.stop()
     distance.stop_measuring()
