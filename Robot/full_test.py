@@ -27,9 +27,6 @@ try:
     motors.stop()
     distance.stop_measuring()
     print("Avstånd: {}".format(n.length()))
-    robot.turn_to(3*math.pi/2, math.radians(4))
-    motors.forward(3*math.pi/2)
-    input("Tryck på enter för att stanna")
 finally:
     motors.stop()
     robot.clean()
