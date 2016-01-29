@@ -46,6 +46,7 @@ def update_plot():
             try:
                 while not res.endswith("}"):
                     r = s.recv(1024).decode("utf-8")
+                    print("Data!")
                     if len(r) == 0:
                         disconnection = True
                         break
