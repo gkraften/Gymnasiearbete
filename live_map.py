@@ -43,7 +43,8 @@ def update_plot():
         res = ""
         while not success:
             try:
-                res = s.recv(4096)
+                while not res.endswith("}"):
+                    res += s.recv(1024).decode("utf-8")
                 success = True
             except:
                 pass
@@ -52,9 +53,9 @@ def update_plot():
             break
 
         try:
-            data = json.loads(res.decode("utf-8"))
+            data = json.loads(res)
         except json.decoder.JSONDecodeError:
-            print(res.decode("utf-8"))
+            print(res)
 
         if "walls" in data:
             for wall in data["walls"]:
