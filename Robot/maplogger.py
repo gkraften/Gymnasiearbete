@@ -83,7 +83,7 @@ def initialize(file=None):
 
     _running = True
     if not file is None:
-        Filnamn _mapfile = open(file, "w")
+        _mapfile = open(file, "w")
     t = threading.Thread(target=_handle_connection)
     t.setDaemon(True)
     t.start()
