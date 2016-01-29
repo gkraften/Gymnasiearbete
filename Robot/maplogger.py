@@ -38,7 +38,6 @@ def _handle_data():
     global _addr
     global _done
 
-    last = time.time()
     _done = False
     while _running:
         position = []
@@ -75,10 +74,6 @@ def _handle_data():
                     _s.close()
                     _connection = False
                     print("Förlorade anslutning till {}".format(_addr[0]))
-
-        if time.time() - last < 5:
-            time.sleep(5 - (time.time() - last))
-        last = time.time()
     _done = True
 
 def initialize(file):
