@@ -41,14 +41,19 @@ def update_plot():
     while True:
         success = False
         res = ""
+        disconnection = False
         while not success:
             try:
                 while not res.endswith("}"):
-                    res += s.recv(1024).decode("utf-8")
+                    r = s.recv(1024).decode("utf-8")
+                    if len(r) == 0:
+                        disconnection = True
+                        break
+                    res += r
                 success = True
             except:
                 pass
-        if len(res) == 0:
+        if disconnection:
             print("Anslutning förlorad")
             break
 
