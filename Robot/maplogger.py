@@ -76,6 +76,7 @@ def _handle_data():
         if time.time() - last < 5:
             time.sleep(5 - (time.time() - last))
         last = time.time()
+    _running = False
 
 def initialize(file):
     global _mapfile
@@ -95,7 +96,7 @@ def close():
     global _data
     global _running
 
-    while not _data.empty():
+    while _running:
         pass
     if _connection:
         _conn.close()
