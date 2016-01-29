@@ -11,6 +11,7 @@ _connection = False
 _running = False
 _conn = None
 _addr = None
+_done = False
 
 def _handle_connection():
     global _s
@@ -35,8 +36,10 @@ def _handle_data():
     global _mapfile
     global _conn
     global _addr
+    global _done
 
     last = time.time()
+    _done = False
     while _running:
         position = []
         walls = []
@@ -59,7 +62,7 @@ def _handle_data():
         if not heading is None:
             data["heading"] = heading
 
-        if len(data) > 0:
+        if len(walls) > 0 and len(position) > 0 and not heading is None:
             if not _mapfile is None and not _mapfile.closed:
                 for wall in walls:
                     print("{},{}".format(wall[0], wall[1]), file=_mapfile)
@@ -76,7 +79,7 @@ def _handle_data():
         if time.time() - last < 5:
             time.sleep(5 - (time.time() - last))
         last = time.time()
-    _running = False
+    _done = True
 
 def initialize(file):
     global _mapfile
@@ -95,15 +98,16 @@ def close():
     global _mapfile
     global _data
     global _running
+    global _done
 
-    while _running:
+    _running = False
+    while not _done:
         pass
     if _connection:
         _conn.close()
     _s.close()
     _mapfile.close()
     _connection = False
-    _running = False
 
 def log(**data):
     _data.put(data)
