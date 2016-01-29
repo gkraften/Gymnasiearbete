@@ -71,6 +71,9 @@ def update_plot():
 
 plt.scatter([0], [0], c="pink")
 
+plt.xlabel("~Norr")
+plt.ylabel("~Väst")
+
 t = Thread(target=update_plot)
 t.setDaemon(True)
 t.start()

@@ -13,4 +13,6 @@ with open("map.txt") as f:
 
 plt.scatter(x, y)
 plt.scatter([0], [0], c="pink")
+plt.xlabel("~Norr")
+plt.ylabel("~Väst")
 plt.show()
