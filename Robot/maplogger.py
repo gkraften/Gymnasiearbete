@@ -62,7 +62,7 @@ def _handle_data():
         if not heading is None:
             data["heading"] = heading
 
-        if len(walls) > 0 and len(position) > 0 and not heading is None:
+        if len(walls) > 0 or len(position) > 0 or not heading is None:
             if not _mapfile is None and not _mapfile.closed:
                 for wall in walls:
                     print("{},{}".format(wall[0], wall[1]), file=_mapfile)

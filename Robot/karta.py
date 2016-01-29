@@ -15,7 +15,7 @@ maplogger.initialize("/var/www/map.txt")
 
 try:
     compass.calibrate(5)
-    input("Tryck på enter för att starta ")
+    input("Tryck på enter för att starta\n")
     motors.left(65)
     t = time.time()
     while True:
