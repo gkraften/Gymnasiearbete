@@ -20,6 +20,7 @@ def _handle_connection():
     global _addr
 
     _s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    _s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     _s.bind(("", 1234))
     _s.listen(1)
     try:
