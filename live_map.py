@@ -70,7 +70,7 @@ def update_plot():
         plt.cla()
         plt.scatter(x, y)
         plt.plot(pos_x, pos_y, c="pink")
-        plt.arrow(pos_x[-1], pos_y[-1], 0.01*math.cos(heading), 0.01*math.sin(heading), fc="pink", ec="pink", head_length=2, head_width=1)
+        plt.arrow(pos_x[-1], pos_y[-1], 0.01*math.cos(heading), 0.01*math.sin(heading), fc="pink", ec="pink", head_length=10, head_width=5)
         plt.draw()
 
 
