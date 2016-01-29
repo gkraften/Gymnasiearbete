@@ -2,6 +2,7 @@ import queue
 import threading
 import socket
 import json
+import time
 
 _mapfile = None
 _data = queue.Queue()
@@ -35,6 +36,7 @@ def _handle_data():
     global _conn
     global _addr
 
+    last = time.time()
     while _running:
         position = []
         walls = []
@@ -70,6 +72,10 @@ def _handle_data():
                     _s.close()
                     _connection = False
                     print("Förlorade anslutning till {}".format(_addr[0]))
+
+        if time.time() - last < 5:
+            time.sleep(5 - (time.time() - last))
+        last = time.time()
 
 def initialize(file):
     global _mapfile
