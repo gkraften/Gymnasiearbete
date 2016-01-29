@@ -8,7 +8,7 @@ _mapfile = None
 _data = queue.Queue()
 _s = None
 _connection = False
-_running = True
+_running = False
 _conn = None
 _addr = None
 
@@ -60,7 +60,7 @@ def _handle_data():
             data["heading"] = heading
 
         if len(data) > 0:
-            if not _mapfile is None:
+            if not _mapfile is None and not _mapfile.closed:
                 for wall in walls:
                     print("{},{}".format(wall[0], wall[1]), file=_mapfile)
 
@@ -79,6 +79,9 @@ def _handle_data():
 
 def initialize(file):
     global _mapfile
+    global _running
+
+    _running = True
     _mapfile = open(file, "w")
     t = threading.Thread(target=_handle_connection)
     t.setDaemon(True)
@@ -90,6 +93,7 @@ def close():
     global _conn
     global _mapfile
     global _data
+    global _running
 
     while not _data.empty():
         pass
@@ -98,6 +102,7 @@ def close():
     _s.close()
     _mapfile.close()
     _connection = False
+    _running = False
 
 def log(**data):
     _data.put(data)
