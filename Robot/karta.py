@@ -31,6 +31,8 @@ try:
         maplogger.log(walls=[[u.x, u.y], [v.x, v.y], [w.x, w.y]])
 
         time.sleep(0.05)
+except KeyboardInterrupt:
+    pass
 finally:
     motors.stop()
     robot.clean()

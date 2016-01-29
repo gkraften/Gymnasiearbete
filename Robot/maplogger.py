@@ -67,7 +67,7 @@ def _handle_data():
             if _connection:
                 try:
                     _conn.sendall(json.dumps(data).encode("utf-8"))
-                except BrokenPipeError:
+                except:
                     _conn.close()
                     _s.close()
                     _connection = False
