@@ -58,20 +58,24 @@ def update_plot():
             break
 
         try:
-            data = json.loads(res)
+            data = []
+            parts = [e+"}" for e in res.split("}") if e != ""]
+            for part in parts:
+                data.append(json.loads(part))
         except json.decoder.JSONDecodeError:
             print(res)
 
-        if "walls" in data:
-            for wall in data["walls"]:
-                x.append(wall[0])
-                y.append(wall[1])
-        if "position" in data:
-            for position in data["position"]:
-                pos_x.append(position[0])
-                pos_y.append(position[1])
-        if "heading" in data:
-            heading = data["heading"]
+        for d in data:
+            if "walls" in d:
+                for wall in d["walls"]:
+                    x.append(wall[0])
+                    y.append(wall[1])
+            if "position" in d:
+                for position in d["position"]:
+                    pos_x.append(position[0])
+                    pos_y.append(position[1])
+            if "heading" in d:
+                heading = d["heading"]
 
         plt.cla()
         plt.scatter(x, y)
