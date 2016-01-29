@@ -50,7 +50,12 @@ def update_plot():
         if len(res) == 0:
             print("Anslutning förlorad")
             break
-        data = json.loads(res.decode("utf-8"))
+
+        try:
+            data = json.loads(res.decode("utf-8"))
+        except json.decoder.JSONDecodeError:
+            print(res.decode("utf-8"))
+
         if "walls" in data:
             for wall in data["walls"]:
                 x.append(wall[0])
