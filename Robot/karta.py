@@ -8,8 +8,6 @@ import math
 from subprocess import call
 import maplogger
 
-call(["service", "apache2", "start"])
-
 #f = open("/var/www/map.txt", "w")
 maplogger.initialize("/var/www/map.txt")
 
