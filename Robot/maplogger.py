@@ -77,12 +77,13 @@ def _handle_data():
                     print("Förlorade anslutning till {}".format(_addr[0]))
     _done = True
 
-def initialize(file):
+def initialize(file=None):
     global _mapfile
     global _running
 
     _running = True
-    _mapfile = open(file, "w")
+    if not file is None:
+        Filnamn _mapfile = open(file, "w")
     t = threading.Thread(target=_handle_connection)
     t.setDaemon(True)
     t.start()
@@ -102,7 +103,9 @@ def close():
     if _connection:
         _conn.close()
     _s.close()
-    _mapfile.close()
+    if not _mapfile is None:
+        _mapfile.close()
+        _mapfile = None
     _connection = False
 
 def log(**data):
