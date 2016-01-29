@@ -79,7 +79,7 @@ def initialize(file):
     t.start()
     threading.Thread(target=_handle_data).start()
 
-def stop():
+def close():
     global _connection
     global _conn
     global _mapfile

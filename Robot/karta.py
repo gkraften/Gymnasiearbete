@@ -34,4 +34,4 @@ finally:
     motors.stop()
     robot.clean()
     #f.close()
-    maplogger.stop()
+    maplogger.close()
