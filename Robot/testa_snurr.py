@@ -6,7 +6,7 @@ import maplogger
 from threading import Thread
 import time
 
-compass.calibrate(10)
+compass.calibrate(5)
 
 maplogger.initialize()
 
