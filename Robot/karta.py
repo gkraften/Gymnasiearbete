@@ -8,7 +8,6 @@ import math
 from subprocess import call
 import maplogger
 
-#f = open("/var/www/map.txt", "w")
 maplogger.initialize("/var/www/map.txt")
 
 try:
@@ -17,16 +16,27 @@ try:
     motors.left(65)
     t = time.time()
     while True:
-        u = vector.from_polar(ultrasonic.get_middle(), compass.getHeading())
-        #print("{},{}".format(u.x, u.y), file=f)
+        m = ultrasonic.get_middle()
+        u = vector.from_polar(m, compass.getHeading())
 
-        v = vector.from_polar(ultrasonic.get_left(), compass.angleDifference(compass.getHeading(), -math.radians(30)))
-        #print("{},{}".format(v.x, v.y), file=f)
+        l = ultrasonic.get_left()
+        v = vector.from_polar(l, compass.angleDifference(compass.getHeading(), -math.radians(30)))
 
-        w = vector.from_polar(ultrasonic.get_right(), compass.angleDifference(compass.getHeading(), math.radians(30)))
-        #print("{},{}".format(w.x, w.y), file=f)
+        r = ultrasonic.get_right()
+        w = vector.from_polar(r, compass.angleDifference(compass.getHeading(), math.radians(30)))
 
-        maplogger.log(walls=[[u.x, u.y], [v.x, v.y], [w.x, w.y]])
+        data = []
+        if m <= 400:
+            data.append([u.x, u.y])
+        if l <= 400:
+            data.append([v.x, v.y])
+        if r <= 400:
+            data.append([w.x, w.y])
+
+        if len(data) == 0:
+            maplogger.log(heading=compass.getHeading())
+        else:
+            maplogger.log(heading=compass.getHeading(), walls=data)
 
         time.sleep(0.05)
 except KeyboardInterrupt:
