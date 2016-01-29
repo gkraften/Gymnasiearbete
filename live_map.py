@@ -82,6 +82,8 @@ def update_plot():
         plt.plot(pos_x, pos_y, c="pink")
         length = abs(plt.xlim()[0] - plt.xlim()[1])/20
         plt.arrow(pos_x[-1], pos_y[-1], length/10*math.cos(heading), length/10*math.sin(heading), fc="pink", ec="pink", head_length=length, head_width=length/2)
+        plt.xlabel("~Norr")
+        plt.ylabel("~Väst")
         plt.draw()
 
 
