@@ -43,7 +43,7 @@ def update_plot():
         res = ""
         while not success:
             try:
-                res = s.recv(1024)
+                res = s.recv(4096)
                 success = True
             except:
                 pass
