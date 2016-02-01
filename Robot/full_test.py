@@ -29,10 +29,10 @@ def supermagiskt():
         u = vector.from_polar(m, compass.getHeading())
 
         l = ultrasonic.get_left()
-        v = vector.from_polar(l, compass.angleDifference(compass.getHeading(), -math.radians(30)))
+        v = vector.from_polar(l, compass.getHeading() + math.radians(30))
 
         r = ultrasonic.get_right()
-        w = vector.from_polar(r, compass.angleDifference(compass.getHeading(), math.radians(30)))
+        w = vector.from_polar(r, compass.getHeading() - math.radians(30))
 
         data = []
         if m <= 400 and m >= 15:
@@ -68,25 +68,25 @@ try:
         if left <= 30 and right <= 30:
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi))
+            robot.turn_to(compass.getHeading() + math.pi)
             distance.start_measuring(count)
             motors.forward()
         elif left <= 30:
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi/2), math.radians(4))
+            robot.turn_to(compass.getHeading() - math.pi/2)
             distance.start_measuring(count)
             motors.forward()
         elif right <= 30:
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.angleDifference(compass.getHeading(), -math.pi/2), math.radians(4))
+            robot.turn_to(compass.getHeading() + math.pi/2)
             distance.start_measuring(count)
             motors.forward()
         elif middle <= 30:
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.angleDifference(compass.getHeading(), random.choice([-1, 1]) * math.pi/2), math.radians(4))
+            robot.turn_to(compass.getHeading() + random.choice([-1, 1]) * math.pi/2)
             distance.start_measuring(count)
             motors.forward()
         time.sleep(0.1)

@@ -20,10 +20,10 @@ try:
         u = vector.from_polar(m, compass.getHeading())
 
         l = ultrasonic.get_left()
-        v = vector.from_polar(l, compass.angleDifference(compass.getHeading(), -math.radians(30)))
+        v = vector.from_polar(l, compass.getHeading() + math.radians(30))
 
         r = ultrasonic.get_right()
-        w = vector.from_polar(r, compass.angleDifference(compass.getHeading(), math.radians(30)))
+        w = vector.from_polar(r, compass.getHeading() - math.radians(30))
 
         data = []
         if m <= 400:
