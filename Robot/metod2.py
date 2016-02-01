@@ -57,13 +57,12 @@ try:
     maplogger.initialize("/var/www/map.txt")
     robot.on_battery_low(avsluta)
     compass.calibrate(5)
-    robot.turn_to(math.pi/2, math.radians(4))
     input("Enter")
     logger = threading.Thread(target=supermagiskt)
     logger.start()
 
     distance.start_measuring(count)
-    motors.forward(math.pi/2)
+    motors.forward()
 
     while True:
         left = ultrasonic.get_left()
