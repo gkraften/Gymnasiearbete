@@ -7,6 +7,7 @@ import math
 import vector
 import time
 import maplogger
+import threading
 
 n = vector.Vector(0, 0)
 done = False
@@ -52,32 +53,10 @@ try:
     compass.calibrate(5)
     robot.turn_to(math.pi/2, math.radians(4))
     input("Enter")
+    threading.Thread(target=supermagiskt).start()
 
     distance.start_measuring(count)
     motors.forward(math.pi/2)
-    for i in range(10):
-        m = ultrasonic.get_middle()
-        u = vector.from_polar(m, compass.getHeading())
-
-        l = ultrasonic.get_left()
-        v = vector.from_polar(l, compass.angleDifference(compass.getHeading(), -math.radians(30)))
-
-        r = ultrasonic.get_right()
-        w = vector.from_polar(r, compass.angleDifference(compass.getHeading(), math.radians(30)))
-
-        data = []
-        if m <= 400:
-            data.append([u.x, u.y])
-        if l <= 400:
-            data.append([v.x, v.y])
-        if r <= 400:
-            data.append([w.x, w.y])
-
-        if len(data) == 0:
-            maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading())
-        else:
-            maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading(), walls=data)
-        time.sleep(0.5)
 
     distance.stop_measuring()
     motors.stop()
@@ -85,31 +64,8 @@ try:
     distance.start_measuring(count)
     motors.forward(math.pi)
 
-    for i in range(6):
-        m = ultrasonic.get_middle()
-        u = vector.from_polar(m, compass.getHeading())
-
-        l = ultrasonic.get_left()
-        v = vector.from_polar(l, compass.angleDifference(compass.getHeading(), -math.radians(30)))
-
-        r = ultrasonic.get_right()
-        w = vector.from_polar(r, compass.angleDifference(compass.getHeading(), math.radians(30)))
-
-        data = []
-        if m <= 400:
-            data.append([u.x, u.y])
-        if l <= 400:
-            data.append([v.x, v.y])
-        if r <= 400:
-            data.append([w.x, w.y])
-
-        if len(data) == 0:
-            maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading())
-        else:
-            maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading(), walls=data)
-        time.sleep(0.5)
-
 finally:
+    done = True
     distance.stop_measuring()
     maplogger.close()
     motors.stop()
