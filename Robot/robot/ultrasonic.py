@@ -1,17 +1,23 @@
 import robot.pins as pins
 import RPi.GPIO as GPIO
 import time
-import vector
+from threading import Lock
 
 class Rangefinder:
     def __init__(self, trig, echo):
         self.trig = trig
         self.echo = echo
+        self.lock = Lock()
+        self.last = 0
 
         GPIO.setup(trig, GPIO.OUT, initial=False)
         GPIO.setup(echo, GPIO.IN)
 
     def distance(self):
+        self.lock.acquire()
+        while time.time() - self.last < 0.05:
+            pass
+        self.last = time.time()
         GPIO.output(self.trig, True)
         time.sleep(0.00001)
         GPIO.output(self.trig, False)
@@ -25,6 +31,7 @@ class Rangefinder:
 
         stop = time.time()
 
+        self.lock.release()
         return (stop - start) * 17150
 
 _LEFT = Rangefinder(pins.DISTANCE_LEFT_TRIG, pins.DISTANCE_LEFT_ECHO)
