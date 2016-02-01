@@ -5,6 +5,7 @@ import robot
 import math
 import vector
 import time
+import maplogger
 
 n = vector.Vector(0, 0)
 
@@ -18,6 +19,7 @@ def avsluta():
     robot.halt()
 
 try:
+    maplogger.initialize()
     robot.on_battery_low(avsluta)
     compass.calibrate(5)
     robot.turn_to(math.pi/2, math.radians(4))
@@ -25,47 +27,12 @@ try:
 
     distance.start_measuring(count)
     motors.forward(math.pi/2)
-    t = time.time()
-    last = compass.getHeading()
-    while time.time() - t < 6:
-        now = compass.getHeading()
-        dtheta = abs(compass.angleDifference(now, last))
-        if dtheta > 10:
-            compass.calibrate(5)
-        time.sleep(1)
-    motors.stop()
-    distance.stop_measuring()
+    for i in range(10):
+        maplogger.log(position=[n.x, n.y], heading=compass.getHeading())
+        time.sleep(0.5)
 
-    robot.turn_to(0, math.radians(4))
-    distance.start_measuring(count)
-    motors.forward(0)
-    t = time.time()
-    last = compass.getHeading()
-    while time.time() - t < 3:
-        now = compass.getHeading()
-        dtheta = abs(compass.angleDifference(now, last))
-        if dtheta > 10:
-            compass.calibrate(5)
-        time.sleep(1)
-    motors.stop()
-    distance.stop_measuring()
-    compass.calibrate(5)
-
-    robot.turn_to(math.pi, math.radians(4))
-    distance.start_measuring(count)
-    motors.forward(math.pi)
-    t = time.time()
-    last = compass.getHeading()
-    while time.time() - t < 3:
-        now = compass.getHeading()
-        dtheta = abs(compass.angleDifference(now, last))
-        if dtheta > 10:
-            compass.calibrate(5)
-        time.sleep(1)
-    motors.stop()
-    distance.stop_measuring()
-
-    print("{}cm".format(n.length()))
 finally:
+    distance.stop_measuring()
+    maplogger.close()
     motors.stop()
     robot.clean()
