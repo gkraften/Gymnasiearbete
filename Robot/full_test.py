@@ -51,11 +51,13 @@ try:
         else:
             maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading(), walls=data)
         time.sleep(0.5)
-    motors.stop()
+
     distance.stop_measuring()
-    robot.turn_to(math.pi/2, math.radians(4))
+    motors.stop()
+    robot.turn_to(math.pi, math.radians(4))
     distance.start_measuring(count)
-    motors.forward(math.pi/2)
+    motors.forward(math.pi)
+
     for i in range(6):
         m = ultrasonic.get_middle()
         u = vector.from_polar(m, compass.getHeading())
