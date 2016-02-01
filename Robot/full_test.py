@@ -61,6 +61,7 @@ try:
     motors.forward(math.pi/2)
 
     while True:
+        print("hej")
         left = ultrasonic.get_left()
         middle = ultrasonic.get_middle()
         right = ultrasonic.get_right()
