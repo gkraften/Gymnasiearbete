@@ -1,6 +1,7 @@
 import smbus
 import math
 import time
+from threading import Lock
 
 DEVICE_ADDRESS = 0x1e
 REGISTER_CRA_REG_M = 0x00
@@ -17,6 +18,7 @@ _xoffset = 0
 _yoffset = 0
 _last = 0
 _last_value = 0
+_lock = Lock()
 
 bus = smbus.SMBus(1)
 
@@ -40,8 +42,12 @@ def setNormalSpeedDataRate():
 def readAxisData():
     global _last
     global _last_value
+    global _lock
 
-    while time.time() - _last < 0.005:
+    _lock.acquire()
+
+    if time.time() - _last < 0.005:
+        _lock.release()
         return _last_value
     _last = time.time()
 
@@ -57,6 +63,8 @@ def readAxisData():
     z = _twos_comp(((zh & 0xff)<<8) | zl, 16)
 
     _last_value = (x, y, z)
+
+    _lock.release()
 
     return (x, y, z)
 
