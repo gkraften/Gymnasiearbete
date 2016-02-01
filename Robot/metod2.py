@@ -26,18 +26,19 @@ def avsluta():
 def supermagiskt():
     global done
     global measure
+    global n
     while not done:
         data = []
 
         if measure:
             m = ultrasonic.get_middle()
-            u = vector.from_polar(m, compass.getHeading())
+            u = n + vector.from_polar(m, compass.getHeading())
 
             l = ultrasonic.get_left()
-            v = vector.from_polar(l, compass.getHeading() + math.radians(30))
+            v = n + vector.from_polar(l, compass.getHeading() + math.radians(30))
 
             r = ultrasonic.get_right()
-            w = vector.from_polar(r, compass.getHeading() - math.radians(30))
+            w = n + vector.from_polar(r, compass.getHeading() - math.radians(30))
 
             if m <= 400 and m >= 15:
                 data.append([u.x, u.y])
