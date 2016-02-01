@@ -46,7 +46,7 @@ def supermagiskt():
             maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading())
         else:
             maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading(), walls=data)
-        time.sleep(0.1)
+        time.sleep(0.5)
 
 try:
     maplogger.initialize("/var/www/map.txt")
