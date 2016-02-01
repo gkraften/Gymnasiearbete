@@ -8,6 +8,7 @@ import vector
 import time
 import maplogger
 import threading
+import random
 
 n = vector.Vector(0, 0)
 done = False
@@ -53,23 +54,40 @@ try:
     compass.calibrate(5)
     robot.turn_to(math.pi/2, math.radians(4))
     input("Enter")
-    threading.Thread(target=supermagiskt).start()
+    logger = threading.Thread(target=supermagiskt)
+    logger.start()
 
     distance.start_measuring(count)
     motors.forward(math.pi/2)
-    time.sleep(5)
 
-    distance.stop_measuring()
-    motors.stop()
-    robot.turn_to(math.pi, math.radians(4))
-    distance.start_measuring(count)
-    motors.forward(math.pi)
-    time.sleep(3)
+    while True:
+        left = ultrasonic.get_left()
+        middle = ultrasonic.get_middle()
+        right = ultrasonic.get_right()
+
+        if left <= 15 and right <= 15:
+            motors.stop()
+            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi))
+            motors.forward()
+        elif left <= 15:
+            motors.stop()
+            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi/6), math.radians(4))
+            motors.forward()
+        elif right <= 15:
+            motors.stop()
+            robot.turn_to(compass.angleDifference(compass.getHeading(), -math.pi/6), math.radians(4))
+            motors.forward()
+        elif middle <= 15:
+            motors.stop()
+            robot.turn_to(compass.angleDifference(compass.getHeading(), random.choose([-1, 1])*math.pi/2))
+            motors.forward
+        time.sleep(0.1)
 except KeyboardInterrupt:
     pass
 finally:
     done = True
     distance.stop_measuring()
-    maplogger.close()
     motors.stop()
+    logger.join()
+    maplogger.close()
     robot.clean()
