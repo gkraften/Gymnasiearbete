@@ -53,9 +53,9 @@ try:
         time.sleep(0.5)
     motors.stop()
     distance.stop_measuring()
-    robot.turn_to(0, math.radians(4))
-    distance.start_measuring()
-    motors.forward(0)
+    robot.turn_to(math.pi/2, math.radians(4))
+    distance.start_measuring(count)
+    motors.forward(math.pi/2)
     for i in range(6):
         m = ultrasonic.get_middle()
         u = vector.from_polar(m, compass.getHeading())
