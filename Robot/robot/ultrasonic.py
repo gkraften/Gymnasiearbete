@@ -9,6 +9,7 @@ class Rangefinder:
         self.echo = echo
         self.lock = Lock()
         self.last = 0
+        self.last_distance = 0
 
         GPIO.setup(trig, GPIO.OUT, initial=False)
         GPIO.setup(echo, GPIO.IN)
@@ -16,7 +17,8 @@ class Rangefinder:
     def distance(self):
         self.lock.acquire()
         while time.time() - self.last < 0.05:
-            pass
+            self.lock.release()
+            return self.last_distance
         self.last = time.time()
         GPIO.output(self.trig, True)
         time.sleep(0.00001)
@@ -31,8 +33,11 @@ class Rangefinder:
 
         stop = time.time()
 
+        d = (stop - start) * 17150
+        self.last_distance = d
+
         self.lock.release()
-        return (stop - start) * 17150
+        return d
 
 _LEFT = Rangefinder(pins.DISTANCE_LEFT_TRIG, pins.DISTANCE_LEFT_ECHO)
 _MIDDLE = Rangefinder(pins.DISTANCE_MID_TRIG, pins.DISTANCE_MID_ECHO)
