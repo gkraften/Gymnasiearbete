@@ -66,27 +66,35 @@ try:
         right = ultrasonic.get_right()
 
         if left <= 30 and right <= 30:
+            print("Båda fick träff")
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi))
+            print("Rakt")
             distance.start_measuring(count)
             motors.forward()
         elif left <= 30:
+            print("Vänster")
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi/6), math.radians(4))
+            print("Rakt")
             distance.start_measuring(count)
             motors.forward()
         elif right <= 30:
+            print("Höger")
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), -math.pi/6), math.radians(4))
+            print("Rakt")
             distance.start_measuring(count)
             motors.forward()
         elif middle <= 30:
+            print("Mitten")
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi/2))
+            print("Rakt")
             distance.start_measuring(count)
             motors.forward
         time.sleep(0.1)
