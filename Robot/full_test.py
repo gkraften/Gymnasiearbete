@@ -74,13 +74,13 @@ try:
         elif left <= 20:
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi/6), math.radians(4))
+            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi/2), math.radians(4))
             distance.start_measuring(count)
             motors.forward()
         elif right <= 20:
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.angleDifference(compass.getHeading(), -math.pi/6), math.radians(4))
+            robot.turn_to(compass.angleDifference(compass.getHeading(), -math.pi/2), math.radians(4))
             distance.start_measuring(count)
             motors.forward()
         elif middle <= 20:
