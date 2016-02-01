@@ -93,7 +93,7 @@ try:
             print("Mitten")
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi), math.radians(4))
+            robot.turn_to(compass.angleDifference(compass.getHeading(), random.choice([-1, 1]) * math.pi/2), math.radians(4))
             print("Rakt")
             distance.start_measuring(count)
             motors.forward()
