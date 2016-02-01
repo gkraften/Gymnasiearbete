@@ -65,25 +65,25 @@ try:
         middle = ultrasonic.get_middle()
         right = ultrasonic.get_right()
 
-        if left <= 20 and right <= 20:
+        if left <= 30 and right <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi))
             distance.start_measuring(count)
             motors.forward()
-        elif left <= 20:
+        elif left <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi/2), math.radians(4))
             distance.start_measuring(count)
             motors.forward()
-        elif right <= 20:
+        elif right <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), -math.pi/2), math.radians(4))
             distance.start_measuring(count)
             motors.forward()
-        elif middle <= 20:
+        elif middle <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), random.choice([-1, 1]) * math.pi/2), math.radians(4))
