@@ -57,13 +57,16 @@ try:
 
     distance.start_measuring(count)
     motors.forward(math.pi/2)
+    time.sleep(5)
 
     distance.stop_measuring()
     motors.stop()
     robot.turn_to(math.pi, math.radians(4))
     distance.start_measuring(count)
     motors.forward(math.pi)
-
+    time.sleep(3)
+except KeyboardInterrupt:
+    pass
 finally:
     done = True
     distance.stop_measuring()
