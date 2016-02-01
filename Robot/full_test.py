@@ -65,7 +65,7 @@ try:
         middle = ultrasonic.get_middle()
         right = ultrasonic.get_right()
 
-        if left <= 30 and right <= 30:
+        if left <= 15 and right <= 15:
             print("Båda fick träff")
             distance.stop_measuring()
             motors.stop()
@@ -73,7 +73,7 @@ try:
             print("Rakt")
             distance.start_measuring(count)
             motors.forward()
-        elif left <= 30:
+        elif left <= 15:
             print("Vänster")
             distance.stop_measuring()
             motors.stop()
@@ -81,7 +81,7 @@ try:
             print("Rakt")
             distance.start_measuring(count)
             motors.forward()
-        elif right <= 30:
+        elif right <= 15:
             print("Höger")
             distance.stop_measuring()
             motors.stop()
@@ -89,7 +89,7 @@ try:
             print("Rakt")
             distance.start_measuring(count)
             motors.forward()
-        elif middle <= 30:
+        elif middle <= 15:
             print("Mitten")
             distance.stop_measuring()
             motors.stop()
