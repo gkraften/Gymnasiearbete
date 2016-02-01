@@ -54,6 +54,7 @@ try:
     motors.stop()
     distance.stop_measuring()
     robot.turn_to(0, math.radians(4))
+    distance.start_measuring()
     motors.forward(0)
     for i in range(6):
         m = ultrasonic.get_middle()
