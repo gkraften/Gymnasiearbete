@@ -16,7 +16,7 @@ class Rangefinder:
 
     def distance(self):
         self.lock.acquire()
-        while time.time() - self.last < 0.05:
+        if time.time() - self.last < 0.05:
             self.lock.release()
             return self.last_distance
         self.last = time.time()
