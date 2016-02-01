@@ -49,7 +49,7 @@ def supermagiskt():
         time.sleep(0.1)
 
 try:
-    maplogger.initialize()
+    maplogger.initialize("/var/www/map.txt")
     robot.on_battery_low(avsluta)
     compass.calibrate(5)
     robot.turn_to(math.pi/2, math.radians(4))
