@@ -93,10 +93,10 @@ try:
             print("Mitten")
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi))
+            robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi), math.radians(4))
             print("Rakt")
             distance.start_measuring(count)
-            motors.forward
+            motors.forward()
         time.sleep(0.1)
 except KeyboardInterrupt:
     pass
