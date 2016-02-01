@@ -35,11 +35,11 @@ def supermagiskt():
         w = vector.from_polar(r, compass.angleDifference(compass.getHeading(), math.radians(30)))
 
         data = []
-        if m <= 400:
+        if m <= 400 and m >= 15:
             data.append([u.x, u.y])
-        if l <= 400:
+        if l <= 400 and l >= 15:
             data.append([v.x, v.y])
-        if r <= 400:
+        if r <= 400 and l >= 15:
             data.append([w.x, w.y])
 
         if len(data) == 0:
