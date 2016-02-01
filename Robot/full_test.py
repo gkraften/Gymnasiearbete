@@ -69,6 +69,7 @@ try:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.angleDifference(compass.getHeading(), math.pi))
+            distance.start_measuring(count)
             motors.forward()
         elif left <= 30:
             distance.stop_measuring()
