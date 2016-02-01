@@ -1,12 +1,12 @@
 from robot import compass
 from robot import motors
 from robot import distance
+from robot import ultrasonic
 import robot
 import math
 import vector
 import time
 import maplogger
-import ultrasonic
 
 n = vector.Vector(0, 0)
 
