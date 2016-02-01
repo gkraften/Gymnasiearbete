@@ -28,7 +28,7 @@ try:
     distance.start_measuring(count)
     motors.forward(math.pi/2)
     for i in range(10):
-        maplogger.log(position=[n.x, n.y], heading=compass.getHeading())
+        maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading())
         time.sleep(0.5)
 
 finally:
