@@ -4,18 +4,18 @@ from threading import Thread
 import json
 import math
 
-host = input("Skriv Lillefars IP: ")
-
-if len(host) == 0:
-    sys.exit()
-
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.settimeout(10)
-print("Ansluter till {}:{}".format(host, 1234))
+
 try:
-    s.connect((host, 1234))
+    s.connect(("lillefar.local", 1234))
 except:
     try:
+        host = input("Skriv Lillefars IP: ")
+
+        if len(host) == 0:
+            sys.exit()
+        print("Ansluter till {}:{}".format(host, 1234))
         s.connect((host, 1234))
     except:
         print("Kunde inte ansluta till Lillefar")
