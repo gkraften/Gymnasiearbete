@@ -1,6 +1,4 @@
-import os
 import sys
-import platform
 import socket
 from threading import Thread
 import json
@@ -17,8 +15,11 @@ print("Ansluter till {}:{}".format(host, 1234))
 try:
     s.connect((host, 1234))
 except:
-    print("Kunde inte ansluta till Lillefar")
-    sys.exit()
+    try:
+        s.connect((host, 1234))
+    except:
+        print("Kunde inte ansluta till Lillefar")
+        sys.exit()
 print("Ansluten!")
 s.settimeout(0)
 
