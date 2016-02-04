@@ -105,7 +105,7 @@ try:
                 logger = threading.Thread(target=supermagiskt)
                 logger.start()
                 time.sleep(1)
-                print("Din mamma är fett ful")
+                motors.forward()
             t = time.time()
             last = compass.getHeading()
         time.sleep(0.1)
