@@ -100,7 +100,9 @@ try:
                 motors.stop()
                 done = True
                 logger.join()
+                a = compass.getHeading()
                 compass.calibrate(4)
+                robot.turn_to(a)
                 done = False
                 logger = threading.Thread(target=supermagiskt)
                 logger.start()
