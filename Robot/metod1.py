@@ -24,6 +24,9 @@ def avsluta():
 
 def supermagiskt():
     global done
+
+    t = 0
+    last = compass.getHeading()
     while not done:
         m = ultrasonic.get_middle()
         u = n + vector.from_polar(m, compass.getHeading())
@@ -46,6 +49,11 @@ def supermagiskt():
             maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading())
         else:
             maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading(), walls=data)
+
+        if time.time() - t >= 0.5:
+            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(15):
+                compass.calibrate(3)
+            t = time.time()
         time.sleep(0.2)
 
 try:
