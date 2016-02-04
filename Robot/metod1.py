@@ -97,6 +97,7 @@ try:
 
         if time.time() - t >= 0.5:
             if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(15):
+                distance.stop_measuring()
                 motors.stop()
                 done = True
                 logger.join()
@@ -107,6 +108,7 @@ try:
                 logger.start()
                 robot.turn_to(a)
                 time.sleep(1)
+                distance.start_measuring(count)
                 motors.forward()
             t = time.time()
             last = compass.getHeading()
