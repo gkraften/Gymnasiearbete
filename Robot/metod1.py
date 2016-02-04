@@ -96,7 +96,7 @@ try:
             motors.forward()
 
         if time.time() - t >= 0.5:
-            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(5):
+            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(10):
                 motors.stop()
                 done = True
                 logger.join()
