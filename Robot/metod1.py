@@ -96,13 +96,14 @@ try:
             motors.forward()
 
         if time.time() - t >= 0.5:
-            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(5):
+            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(10):
                 done = True
                 logger.join()
                 compass.calibrate(3)
                 done = False
                 logger = threading.Thread(target=supermagiskt)
                 logger.start()
+                time.sleep(1)
             t = time.time()
             last = compass.getHeading()
         time.sleep(0.1)
