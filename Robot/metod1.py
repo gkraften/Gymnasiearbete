@@ -97,6 +97,7 @@ try:
 
         if time.time() - t >= 0.5:
             if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(5):
+                motors.stop()
                 done = True
                 logger.join()
                 compass.calibrate(3)
