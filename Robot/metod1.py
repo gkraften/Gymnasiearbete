@@ -70,24 +70,28 @@ try:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + math.pi)
+            last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
         elif left <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() - math.pi/2)
+            last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
         elif right <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + math.pi/2)
+            last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
         elif middle <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + random.choice([-1, 1]) * math.pi/2)
+            last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
 
