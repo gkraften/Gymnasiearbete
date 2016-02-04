@@ -100,7 +100,7 @@ try:
                 motors.stop()
                 done = True
                 logger.join()
-                compass.calibrate(3)
+                compass.calibrate(4)
                 done = False
                 logger = threading.Thread(target=supermagiskt)
                 logger.start()
