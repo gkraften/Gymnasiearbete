@@ -102,10 +102,10 @@ try:
                 logger.join()
                 a = compass.getHeading()
                 compass.calibrate(4)
-                robot.turn_to(a)
                 done = False
                 logger = threading.Thread(target=supermagiskt)
                 logger.start()
+                robot.turn_to(a)
                 time.sleep(1)
                 motors.forward()
             t = time.time()
