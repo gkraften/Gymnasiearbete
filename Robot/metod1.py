@@ -76,7 +76,7 @@ try:
         elif left <= 30:
             distance.stop_measuring()
             motors.right()
-            time.sleep(0.5)
+            time.sleep(2)
             motors.stop()
             last = compass.getHeading()
             distance.start_measuring(count)
@@ -84,7 +84,7 @@ try:
         elif right <= 30:
             distance.stop_measuring()
             motors.left()
-            time.sleep(0.5)
+            time.sleep(2)
             motors.stop()
             last = compass.getHeading()
             distance.start_measuring(count)
@@ -92,7 +92,7 @@ try:
         elif middle <= 30:
             distance.stop_measuring()
             motors.right()
-            time.sleep(0.5)
+            time.sleep(2)
             motors.stop()
             last = compass.getHeading()
             distance.start_measuring(count)
