@@ -112,7 +112,7 @@ try:
                 done = False
                 logger = threading.Thread(target=supermagiskt)
                 logger.start()
-                robot.turn_to(a, math.radians(10))
+                robot.turn_to(a, math.radians(13))
                 time.sleep(1)
                 distance.start_measuring(count)
                 motors.forward()
