@@ -69,28 +69,28 @@ try:
         middle = ultrasonic.get_middle()
         right = ultrasonic.get_right()
 
-        if (left <= 30 and right <= 30) and (last_left <= 30 and last_right <= 30):
+        if (left <= 30 and right <= 30) and (last_left <= 35 and last_right <= 35):
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + math.pi)
             last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
-        elif left <= 30 and last_left <= 30:
+        elif left <= 30 and last_left <= 35:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() - math.pi/2)
             last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
-        elif right <= 30 and last_right <= 30:
+        elif right <= 30 and last_right <= 35:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + math.pi/2)
             last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
-        elif middle <= 30 and last_right <= 30:
+        elif middle <= 30 and last_right <= 35:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + math.pi/2)
