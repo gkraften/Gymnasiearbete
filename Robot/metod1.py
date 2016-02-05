@@ -102,7 +102,7 @@ try:
             motors.forward()
 
         if time.time() - t >= 0.5:
-            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(10):
+            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(15):
                 distance.stop_measuring()
                 motors.stop()
                 done = True
@@ -112,7 +112,7 @@ try:
                 done = False
                 logger = threading.Thread(target=supermagiskt)
                 logger.start()
-                robot.turn_to(a, math.radians(15))
+                robot.turn_to(a, math.radians(10))
                 time.sleep(1)
                 distance.start_measuring(count)
                 motors.forward()
