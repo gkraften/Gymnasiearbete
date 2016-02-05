@@ -90,19 +90,19 @@ try:
         elif middle <= 30:
             distance.stop_measuring()
             motors.stop()
-            robot.turn_to(compass.getHeading() + random.choice([-1, 1]) * math.pi/2)
+            robot.turn_to(compass.getHeading() + math.pi/2)
             last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
 
         if time.time() - t >= 0.5:
-            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(10):
+            if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(15):
                 distance.stop_measuring()
                 motors.stop()
                 done = True
                 logger.join()
                 a = compass.getHeading()
-                compass.calibrate(4)
+                compass.calibrate(3)
                 done = False
                 logger = threading.Thread(target=supermagiskt)
                 logger.start()
