@@ -75,6 +75,7 @@ try:
             motors.forward()
         elif left <= 30:
             distance.stop_measuring()
+            motors.stop()
             motors.right()
             time.sleep(2)
             motors.stop()
@@ -83,6 +84,7 @@ try:
             motors.forward()
         elif right <= 30:
             distance.stop_measuring()
+            motors.stop()
             motors.left()
             time.sleep(2)
             motors.stop()
@@ -91,6 +93,7 @@ try:
             motors.forward()
         elif middle <= 30:
             distance.stop_measuring()
+            motors.stop()
             motors.right()
             time.sleep(2)
             motors.stop()
