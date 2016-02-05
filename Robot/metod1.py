@@ -61,39 +61,46 @@ try:
 
     t = 0
     last = compass.getHeading()
+    last_left = 0
+    last_mid = 0
+    last_right = 0
     while True:
         left = ultrasonic.get_left()
         middle = ultrasonic.get_middle()
         right = ultrasonic.get_right()
 
-        if left <= 30 and right <= 30:
+        if (left <= 30 and right <= 30) and (last_left <= 30 and last_right <= 30):
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + math.pi)
             last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
-        elif left <= 30:
+        elif left <= 30 and last_left <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() - math.pi/2)
             last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
-        elif right <= 30:
+        elif right <= 30 and last_right <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + math.pi/2)
             last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
-        elif middle <= 30:
+        elif middle <= 30 and last_right <= 30:
             distance.stop_measuring()
             motors.stop()
             robot.turn_to(compass.getHeading() + math.pi/2)
             last = compass.getHeading()
             distance.start_measuring(count)
             motors.forward()
+
+        last_left = left
+        last_mid = middle
+        last_right = right
 
         if time.time() - t >= 0.5:
             if abs(compass.angleDifference(compass.getHeading(), last)) >= math.radians(15):
