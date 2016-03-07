@@ -11,7 +11,7 @@ with open("distances.csv", "w") as f:
         d3 = ultrasonic._RIGHT.distance()
         print("{},{},{}".format(d1, d2, d3), file=f)
         sleep(0.05)
-        if i % int(0.01*n):
+        if i % int(0.01*n) == 0:
             print("{}%".forma(100*i/n))
 
 robot.clean()
