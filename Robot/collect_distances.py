@@ -10,7 +10,7 @@ with open("distances.csv", "w") as f:
         d2 = ultrasonic._MIDDLE.distance()
         d3 = ultrasonic._RIGHT.distance()
         print("{},{},{}".format(d1, d2, d3), file=f)
-        sleep(0.05)
+        sleep(0.07)
         if i % int(0.01*n) == 0:
             print("{}%".format(100*i/n))
 
