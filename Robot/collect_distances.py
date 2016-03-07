@@ -12,6 +12,6 @@ with open("distances.csv", "w") as f:
         print("{},{},{}".format(d1, d2, d3), file=f)
         sleep(0.05)
         if i % int(0.01*n) == 0:
-            print("{}%".forma(100*i/n))
+            print("{}%".format(100*i/n))
 
 robot.clean()
