@@ -6,12 +6,11 @@ import robot
 import math
 import vector
 import time
-import maplogger
 import threading
-import random
 
 n = vector.Vector(0, 0)
 done = False
+f = open("/var/www/karta.txt", "w")
 
 def count():
     global n
@@ -26,30 +25,30 @@ def supermagiskt():
     global done
     while not done:
         m = ultrasonic.get_middle()
-        u = n + vector.from_polar(m, compass.getHeading())
 
         l = ultrasonic.get_left()
-        v = n + vector.from_polar(l, compass.getHeading() + math.radians(30))
 
         r = ultrasonic.get_right()
-        w = n + vector.from_polar(r, compass.getHeading() - math.radians(30))
 
+        s = "{},{} {}".format(n.x, n.y, compass.getHeading())
         data = []
         if m <= 300 and m >= 15:
             data.append([u.x, u.y])
+            s += " 2:{}".format(m)
         if l <= 300 and l >= 15:
             data.append([v.x, v.y])
+            s += " 1:{}".format(l)
         if r <= 300 and l >= 15:
             data.append([w.x, w.y])
+            s += " 3:{}".format(r)
 
-        if len(data) == 0:
-            maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading())
-        else:
-            maplogger.log(position=[[n.x, n.y]], heading=compass.getHeading(), walls=data)
+        if len(data) != 0:
+            for d in data:
+                s += " {}".format(d)
+            print(s, )
         time.sleep(0.2)
 
 try:
-    maplogger.initialize("/var/www/map.txt")
     robot.on_battery_low(avsluta)
     compass.calibrate(5)
     input("Enter")
@@ -129,5 +128,5 @@ finally:
     distance.stop_measuring()
     motors.stop()
     logger.join()
-    maplogger.close()
+    f.close()
     robot.clean()
