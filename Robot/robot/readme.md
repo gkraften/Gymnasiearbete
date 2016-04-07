@@ -3,8 +3,6 @@
 
 *compass* - reglerar kompassen
 
-*controller* - PID-regulatorn
-
 *distance* - håller koll på när en magnet paserar halleffektsensorn
 
 *motors* - styr motorerna
